@@ -8,7 +8,7 @@
 <meta name="description" content="PawScribe note workspace: paste rough notes, dictate or record a consultation, and build an editable SOAP draft. Notes are saved only in your browser.">
 <link rel="canonical" href="https://alvarado509.github.io/pawscribe/app.html">
 <link rel="icon" href="assets/favicon.ico">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=3">
 <style>
 /* v2 contract tokens (shared style.css is owned in parallel; these
    page-level tokens apply the contract until it carries them). */
@@ -61,12 +61,12 @@ textarea.form-input { overflow-y: hidden; }
 details.ai-settings { margin-top: 24px; }
 details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 600; color: var(--color-ink); }
 </style>
-<script src="assets/config.js" defer></script>
-<script src="assets/app.js" defer></script>
-<script src="assets/templates.js" defer></script>
-<script src="assets/ai.js" defer></script>
-<script src="assets/audio.js" defer></script>
-<script src="assets/workspace.js" defer></script>
+<script src="assets/config.js?v=3" defer></script>
+<script src="assets/app.js?v=3" defer></script>
+<script src="assets/templates.js?v=3" defer></script>
+<script src="assets/ai.js?v=3" defer></script>
+<script src="assets/audio.js?v=3" defer></script>
+<script src="assets/workspace.js?v=3" defer></script>
 </head>
 <body>
 <header class="site-header">
@@ -83,21 +83,21 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
     </nav>
     <div class="header-actions">
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
-        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
-        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+        <svg class="icon" data-icon-moon aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
       <span data-auth-logged-out>
         <a class="signin-link" href="auth.html">Sign in</a>
       </span>
       <span class="user-chip" data-auth-logged-in hidden>
-        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <svg class="icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
         <span data-user-first-name></span>
         <a href="dashboard.html">Dashboard</a>
       </span>
       <a class="btn btn-primary header-cta" href="app.html">Try free</a>
       <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
-        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+        <svg class="icon" data-icon-menu aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
   </div>
@@ -133,8 +133,8 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
         <label class="form-label" for="rough-input">Paste your rough notes</label>
         <textarea class="form-input" id="rough-input" rows="6" placeholder="e.g. Milo, 3yo Golden, soft stools 3 days, eating ok&#10;Temp 38.6, HR 92, weight 32kg, abdomen soft"></textarea>
         <div class="btn-row">
-          <button class="btn btn-ghost" type="button" id="dictate-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mic"/></svg> Dictate</button>
-          <button class="btn btn-ghost" type="button" id="record-btn"><svg class="icon icon-record" aria-hidden="true"><use href="assets/icons.svg#record"/></svg> Record</button>
+          <button class="btn btn-ghost" type="button" id="dictate-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=3#mic"/></svg> Dictate</button>
+          <button class="btn btn-ghost" type="button" id="record-btn"><svg class="icon icon-record" aria-hidden="true"><use href="assets/icons.svg?v=3#record"/></svg> Record</button>
         </div>
         <p class="helper-line">Dictate = live transcription. Record = full consultation audio.</p>
         <p id="record-status" class="helper-line"></p>
@@ -145,7 +145,7 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
           <select class="form-input" id="template-picker">
             <option value="">Choose a template…</option>
           </select>
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevron-down"/></svg>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=3#chevron-down"/></svg>
         </div>
         <p class="helper-line" id="template-helper"></p>
         <div class="sample-box" id="template-sample" hidden></div>
@@ -206,9 +206,9 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
       <section class="editor-actions" data-panel="actions" aria-label="Copy and export">
         <h2>Copy &amp; export</h2>
         <p>
-          <button class="btn btn-ghost" type="button" id="copy-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#copy"/></svg> Copy</button>
-          <button class="btn btn-ghost" type="button" id="download-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg> Download (.txt)</button>
-          <button class="btn btn-primary" type="button" id="save-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#save"/></svg> Save</button>
+          <button class="btn btn-ghost" type="button" id="copy-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=3#copy"/></svg> Copy</button>
+          <button class="btn btn-ghost" type="button" id="download-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=3#download"/></svg> Download (.txt)</button>
+          <button class="btn btn-primary" type="button" id="save-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=3#save"/></svg> Save</button>
           <button class="btn btn-ghost" type="button" id="new-btn">New note</button>
           <button class="btn btn-ghost" type="button" id="export-btn">Export JSON</button>
         </p>
@@ -283,7 +283,7 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
 </footer>
 
 <a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
-  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-2.9-.4-4.1-1L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>
 </a>
 
 <div class="toast" id="toast" role="status"></div>

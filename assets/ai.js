@@ -6,6 +6,13 @@
    A draft is NEVER faked: no simulated note, no fake loading-to-success,
    no client-side generated AI note. A draft only ever comes back from a
    real Worker response shaped {soap:{S,O,A,P}} (or {S,O,A,P} directly).
+   When WORKER_URL is set, the request also carries deviceId (a random
+   per-browser id, pawscribe_device_v1) and subscriptionId (from the
+   PayPal record pawscribe_subscription_v1, when the user subscribed),
+   so the Worker can enforce monthly quotas and verify the subscription
+   server-side. The Worker answers 429 when the monthly cap is hit and
+   402 when the subscription does not verify — both are surfaced honestly
+   instead of falling back to "connects soon".
    BYOK (optional): the vet's own Gemini key, stored only in their browser
    under pawscribe_byok_key_v1, is sent to Google's Gemini API directly.
    The key is never sent to PawScribe and never stored anywhere else. */
@@ -30,6 +37,33 @@
 
   function getByokKey() {
     try { return localStorage.getItem(BYOK_KEY) || ""; } catch (e) { return ""; }
+  }
+
+  /* Per-browser anonymous id for the Worker's free monthly quota.
+     Random, no personal data, stored only in this browser. */
+  var DEVICE_KEY = "pawscribe_device_v1";
+  function getDeviceId() {
+    try {
+      var id = localStorage.getItem(DEVICE_KEY);
+      if (!id) {
+        id = (window.crypto && window.crypto.randomUUID)
+          ? window.crypto.randomUUID()
+          : ("dev-" + Date.now().toString(36) + "-" + Math.floor(Math.random() * 1e9).toString(36));
+        localStorage.setItem(DEVICE_KEY, id);
+      }
+      return id;
+    } catch (e) { return "anon"; }
+  }
+
+  /* PayPal subscription id, written by paypal.js onApprove — the Worker
+     verifies it against live PayPal on every AI call. */
+  function getSubscriptionId() {
+    try {
+      var raw = localStorage.getItem("pawscribe_subscription_v1");
+      if (!raw) return "";
+      var rec = JSON.parse(raw);
+      return (rec && typeof rec.subscriptionID === "string") ? rec.subscriptionID : "";
+    } catch (e) { return ""; }
   }
 
   function setByokKey(key) {
@@ -79,8 +113,15 @@
       var res = await fetch(workerUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: clean, model: config().MODEL_NAME || "gemini-3.8-flash" })
+        body: JSON.stringify({
+          text: clean,
+          model: config().MODEL_NAME || "gemini-3.8-flash",
+          deviceId: getDeviceId(),
+          subscriptionId: getSubscriptionId()
+        })
       });
+      if (res.status === 429) return { ok: false, status: "limit_reached" };
+      if (res.status === 402 || res.status === 403) return { ok: false, status: "subscription" };
       if (!res.ok) return notConnected();
       var data = await res.json();
       var soap = (data && data.soap) || data;

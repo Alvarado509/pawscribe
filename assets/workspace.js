@@ -329,6 +329,11 @@
         toast("AI draft ready — review every line before saving.");
       } else if (result && result.status === "empty") {
         status.textContent = "Paste or dictate some rough notes first.";
+      } else if (result && result.status === "limit_reached") {
+        status.textContent = "You have used your AI notes for this month. The free templates work now — or upgrade for more.";
+        refreshQuota();
+      } else if (result && result.status === "subscription") {
+        status.textContent = "Your subscription could not be verified — check your plan or try again. The free templates work now.";
       } else {
         status.textContent = "AI drafting connects soon — the free templates work now.";
       }

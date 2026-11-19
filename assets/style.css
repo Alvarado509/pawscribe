@@ -617,12 +617,6 @@ details p { color: var(--body); font-size: 15px; margin: 16px 0 0; }
 }
 .fab:hover { background: var(--teal-hover); text-decoration: none; }
 .fab[hidden] { display: none; }
-/* On phones every CTA is full-width, so a fixed bottom-right button would
-   cover a button corner while scrolling — hide the FAB there. The contact
-   link stays in the footer. Desktop keeps it (empty space, bottom-right). */
-@media (max-width: 640px) {
-  .fab { display: none; }
-}
 
 /* ---------- Toast ---------- */
 .toast {
