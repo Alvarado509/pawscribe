@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOAP templates for veterinarians — PawScribe</title>
+<meta name="description" content="Free SOAP note templates for vets: dog and cat wellness exams, vaccination visits, dental exams, surgery follow-ups, emergency visits and senior checks. Open any template in the workspace — no account needed.">
+<link rel="canonical" href="https://alvarado509.github.io/pawscribe/templates.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SOAP templates for veterinarians — PawScribe">
+<meta property="og:description" content="Free SOAP note templates for vets. Open any template in the workspace — no account needed.">
+<meta property="og:url" content="https://alvarado509.github.io/pawscribe/templates.html">
+<meta property="og:image" content="https://alvarado509.github.io/pawscribe/assets/pawscribe-logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SOAP templates for veterinarians — PawScribe">
+<meta name="twitter:description" content="Free SOAP note templates for vets. Open any template in the workspace — no account needed.">
+<meta name="twitter:image" content="https://alvarado509.github.io/pawscribe/assets/pawscribe-logo.jpg">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js" defer></script>
+<script src="assets/app.js" defer></script>
+<script src="assets/templates.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="40" height="40"> PawScribe</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
+    <nav class="nav" aria-label="Main">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="templates.html">Templates</a>
+      <a class="nav-link" href="app.html">Workspace</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
+    </nav>
+    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">SOAP templates for every visit</h1>
+      <p class="hero-sub">Free templates, ready to use. Open one in the workspace, fill in the fields, and get a clean SOAP note — no account, no install, notes stay in your browser.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid" id="template-grid"></div>
+      <p class="empty-state" id="template-empty" hidden>No templates loaded. Reload the page and try again.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">See the quality before you sign up</h2>
+      <p class="section-sub">A full sample note, written from the Dog Wellness Exam template. Anything not stated in the example is marked [not stated] — findings are never invented.</p>
+      <div class="card">
+        <h3>Dog Wellness Exam — sample SOAP note</h3>
+        <div class="soap" id="sample-soap">
+          <div class="soap-section"><p class="soap-label">S — Subjective</p><p id="sample-s"></p></div>
+          <div class="soap-section"><p class="soap-label">O — Objective</p><p id="sample-o"></p></div>
+          <div class="soap-section"><p class="soap-label">A — Assessment</p><p id="sample-a"></p></div>
+          <div class="soap-section"><p class="soap-label">P — Plan</p><p id="sample-p"></p></div>
+        </div>
+        <p><a class="btn btn-primary" href="app.html?template=dog-wellness">Open in workspace</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<a class="floating-contact" href="mailto:hello@pawscribe.site" aria-label="Contact PawScribe by email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32"> PawScribe</a></p>
+    <p>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="templates.html">Templates</a>
+      <a class="nav-link" href="app.html">Workspace</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
+    </p>
+    <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+    <p>© <span data-year>2026</span> PawScribe</p>
+    <nav aria-label="Guides">
+      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
+      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
+      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
+    </nav>
+  </div>
+</footer>
+<div class="toast" hidden></div>
+
+<script>
+/* Render every template from templates.js as a card. Each card links
+   to the workspace with ?template=<id>, which loads it there. */
+document.addEventListener("DOMContentLoaded", function () {
+  function render() {
+    var grid = document.getElementById("template-grid");
+    var empty = document.getElementById("template-empty");
+    if (!grid) return;
+    var templates = window.PAWSCRIBE_TEMPLATES || [];
+    if (!templates.length) { if (empty) empty.hidden = false; return; }
+    templates.forEach(function (t) {
+      var card = document.createElement("article");
+      card.className = "template-card";
+      var title = document.createElement("h3");
+      title.textContent = t.title;
+      var species = document.createElement("p");
+      var pill = document.createElement("span");
+      pill.className = "pill";
+      pill.textContent = t.species;
+      species.appendChild(pill);
+      var desc = document.createElement("p");
+      desc.textContent = t.description;
+      var fields = document.createElement("p");
+      fields.textContent = "Fields: " + t.fields.map(function (f) { return f.label; }).join(" · ");
+      var link = document.createElement("a");
+      link.className = "btn btn-primary";
+      link.href = "app.html?template=" + encodeURIComponent(t.id);
+      link.textContent = "Open in workspace";
+      card.appendChild(title);
+      card.appendChild(species);
+      card.appendChild(desc);
+      card.appendChild(fields);
+      card.appendChild(link);
+      grid.appendChild(card);
+    });
+    var sample = templates.find(function (t) { return t.id === "dog-wellness"; });
+    if (sample && sample.soap) {
+      document.getElementById("sample-s").textContent = sample.soap.S;
+      document.getElementById("sample-o").textContent = sample.soap.O;
+      document.getElementById("sample-a").textContent = sample.soap.A;
+      document.getElementById("sample-p").textContent = sample.soap.P;
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", render);
+  } else { render(); }
+});
+</script>
+</body>
+</html>
