@@ -236,6 +236,9 @@ html[data-theme="dark"] .btn-primary:hover { background: #0B5E57; }
 textarea.form-input { overflow: hidden; }
 
 /* --- Steps: number alone in a circle ------------------------------------- */
+/* The <ol> must not render its own decimal markers — the .step-num circle
+   is the only number. (Without this, every step shows "1." then "1".) */
+.steps { list-style: none; margin: 0; padding: 0; }
 .step-num {
   width: 48px;
   height: 48px;
