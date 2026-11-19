@@ -7,8 +7,8 @@
 <title>Write a note — PawScribe</title>
 <meta name="description" content="PawScribe note workspace: paste rough notes, dictate or record a consultation, and build an editable SOAP draft. Notes are saved only in your browser.">
 <link rel="canonical" href="https://alvarado509.github.io/pawscribe/app.html">
-<link rel="icon" href="assets/favicon.ico">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="icon" href="assets/favicon.ico?v=5">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <style>
 /* v2 contract tokens (shared style.css is owned in parallel; these
    page-level tokens apply the contract until it carries them). */
@@ -61,18 +61,18 @@ textarea.form-input { overflow-y: hidden; }
 details.ai-settings { margin-top: 24px; }
 details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 600; color: var(--color-ink); }
 </style>
-<script src="assets/config.js?v=4" defer></script>
-<script src="assets/app.js?v=4" defer></script>
-<script src="assets/templates.js?v=4" defer></script>
-<script src="assets/ai.js?v=4" defer></script>
-<script src="assets/audio.js?v=4" defer></script>
-<script src="assets/workspace.js?v=4" defer></script>
+<script src="assets/config.js?v=5" defer></script>
+<script src="assets/app.js?v=5" defer></script>
+<script src="assets/templates.js?v=5" defer></script>
+<script src="assets/ai.js?v=5" defer></script>
+<script src="assets/audio.js?v=5" defer></script>
+<script src="assets/workspace.js?v=5" defer></script>
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="index.html">
-      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      <img src="assets/pawscribe-logo.png" alt="PawScribe logo" width="32" height="32">
       PawScribe
     </a>
     <nav class="main-nav" aria-label="Main">
@@ -94,7 +94,7 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
         <span data-user-first-name></span>
         <a href="dashboard.html">Dashboard</a>
       </span>
-      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <a class="btn btn-primary header-cta" href="auth.html">Try free</a>
       <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <svg class="icon" data-icon-menu aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg class="icon" data-icon-close aria-hidden="true" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -112,7 +112,7 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
     <span data-auth-logged-in hidden>
       <a href="dashboard.html">Dashboard</a>
     </span>
-    <a class="btn btn-primary" href="app.html">Try free</a>
+    <a class="btn btn-primary" href="auth.html">Try free</a>
   </nav>
 </header>
 
@@ -133,8 +133,8 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
         <label class="form-label" for="rough-input">Paste your rough notes</label>
         <textarea class="form-input" id="rough-input" rows="6" placeholder="e.g. Milo, 3yo Golden, soft stools 3 days, eating ok&#10;Temp 38.6, HR 92, weight 32kg, abdomen soft"></textarea>
         <div class="btn-row">
-          <button class="btn btn-ghost" type="button" id="dictate-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=4#mic"/></svg> Dictate</button>
-          <button class="btn btn-ghost" type="button" id="record-btn"><svg class="icon icon-record" aria-hidden="true"><use href="assets/icons.svg?v=4#record"/></svg> Record</button>
+          <button class="btn btn-ghost" type="button" id="dictate-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=5#mic"/></svg> Dictate</button>
+          <button class="btn btn-ghost" type="button" id="record-btn"><svg class="icon icon-record" aria-hidden="true"><use href="assets/icons.svg?v=5#record"/></svg> Record</button>
         </div>
         <p class="helper-line">Dictate = live transcription. Record = full consultation audio.</p>
         <p id="record-status" class="helper-line"></p>
@@ -145,7 +145,7 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
           <select class="form-input" id="template-picker">
             <option value="">Choose a template…</option>
           </select>
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=4#chevron-down"/></svg>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=5#chevron-down"/></svg>
         </div>
         <p class="helper-line" id="template-helper"></p>
         <div class="sample-box" id="template-sample" hidden></div>
@@ -206,9 +206,9 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
       <section class="editor-actions" data-panel="actions" aria-label="Copy and export">
         <h2>Copy &amp; export</h2>
         <p>
-          <button class="btn btn-ghost" type="button" id="copy-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=4#copy"/></svg> Copy</button>
-          <button class="btn btn-ghost" type="button" id="download-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=4#download"/></svg> Download (.txt)</button>
-          <button class="btn btn-primary" type="button" id="save-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=4#save"/></svg> Save</button>
+          <button class="btn btn-ghost" type="button" id="copy-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=5#copy"/></svg> Copy</button>
+          <button class="btn btn-ghost" type="button" id="download-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=5#download"/></svg> Download (.txt)</button>
+          <button class="btn btn-primary" type="button" id="save-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=5#save"/></svg> Save</button>
           <button class="btn btn-ghost" type="button" id="new-btn">New note</button>
           <button class="btn btn-ghost" type="button" id="export-btn">Export JSON</button>
         </p>
@@ -243,7 +243,7 @@ details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 60
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="brand" href="index.html">
-          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          <img src="assets/pawscribe-logo.png" alt="PawScribe logo" width="32" height="32">
           PawScribe
         </a>
         <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
