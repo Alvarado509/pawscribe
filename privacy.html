@@ -3,90 +3,162 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy — PawScribe | Your notes stay in your browser</title>
-<meta name="description" content="PawScribe privacy: your notes are saved only in your browser. No account, no tracking, no selling data. Text sent for AI drafting is not stored by PawScribe.">
+<title>Privacy Policy | PawScribe</title>
+<meta name="description" content="PawScribe privacy policy: your notes are saved only in your browser. Text sent for AI drafting is not stored by PawScribe.">
 <link rel="canonical" href="https://alvarado509.github.io/pawscribe/privacy.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Privacy — PawScribe">
-<meta property="og:description" content="Your notes are saved only in your browser. No account, no tracking, no selling data.">
+<meta property="og:title" content="Privacy Policy | PawScribe">
+<meta property="og:description" content="Your notes are saved only in your browser. Text sent for AI drafting is not stored by PawScribe.">
 <meta property="og:url" content="https://alvarado509.github.io/pawscribe/privacy.html">
-<meta property="og:image" content="https://alvarado509.github.io/pawscribe/assets/pawscribe-logo.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Privacy — PawScribe">
-<meta name="twitter:description" content="Your notes are saved only in your browser. No account, no tracking, no selling data.">
+<meta name="twitter:title" content="Privacy Policy | PawScribe">
+<meta name="twitter:description" content="Your notes are saved only in your browser.">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
-<script defer src="assets/config.js"></script>
+<link rel="stylesheet" href="assets/marketing.css">
 <script defer src="assets/app.js"></script>
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="36" height="36"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
-  <section class="hero">
+  <section class="hero page-hero">
     <div class="container">
-      <h1 class="hero-title">Privacy</h1>
-      <p class="hero-sub">Plain language, no fine print. Here is what happens to your data when you use PawScribe.</p>
+      <p><span class="eyebrow">Privacy</span></p>
+      <h1 class="hero-title">Your notes stay <em>yours</em></h1>
+      <p class="hero-sub">Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2 class="section-title">Your notes stay in your browser</h2>
+    <div class="container prose">
+      <h2>The short version</h2>
       <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
-      <p>Your notes, templates, and drafts are saved in your browser's local storage, on your own device. They are not uploaded to a PawScribe server, because there is no PawScribe server holding your notes. If you clear your browser data, your saved notes are gone — keep a copy in your practice system.</p>
+      <p>PawScribe is a static website. There is no PawScribe server, no account database, and no analytics that follows you. We cannot see your notes, because they never reach us.</p>
 
-      <h2 class="section-title">What happens when you press Generate</h2>
-      <p>Nothing leaves your browser until you press Generate. Only then is the text you entered sent to the AI provider so it can draft your SOAP note. The draft comes back to your browser. PawScribe does not store the text you sent.</p>
-      <p>If you dictate with your browser's built-in speech recognition, that is Chrome's Web Speech API: your audio is sent to Google's servers to be transcribed. That is how the browser feature works — it is browser behaviour, not something PawScribe does or controls. If you would rather not send audio to Google, type or paste your notes instead.</p>
-
-      <h2 class="section-title">No account, no tracking, no selling data</h2>
-      <ul class="check-list">
-        <li>No account — you never create a login or give us your name or email to use PawScribe.</li>
-        <li>No tracking — we do not follow you across the web and we do not run analytics that identify you.</li>
-        <li>No selling data — we do not sell your notes or any information about you to anyone.</li>
-        <li>No ads in the workspace.</li>
+      <h2>What is stored in your browser</h2>
+      <p>Everything PawScribe saves lives in your browser&rsquo;s localStorage, under keys starting with <code>pawscribe_</code>:</p>
+      <ul>
+        <li><strong>Your notes</strong> — note history, capped at the last 100 notes.</li>
+        <li><strong>Your templates</strong> — custom templates you create.</li>
+        <li><strong>Your plan</strong> — whether your browser is unlocked for Free, Pro, or Clinic.</li>
+        <li><strong>Your AI quota</strong> — how many AI notes you have used this month.</li>
+        <li><strong>Your API key, only if you add one</strong> — in the bring-your-own-key option, your key is stored in your browser only.</li>
+        <li><strong>Your theme choice</strong> — light or dark mode.</li>
       </ul>
+      <p>Clearing your browser data deletes all of it. There is no copy anywhere else.</p>
 
-      <h2 class="section-title">Payments</h2>
-      <p>Payments are handled by PayPal. When you subscribe, you pay on PayPal's site, and PayPal stores your payment details. We never see your card details. Your plan is saved in your browser only, so the workspace on this device knows you are on Pro or Clinic.</p>
+      <h2>AI drafting</h2>
+      <p>AI drafting connects soon — the free templates work now. When it connects, the text you send for drafting goes to the AI provider through a small proxy, and the draft comes back to your browser. Text sent for AI drafting is not stored by PawScribe. The AI provider processes the text to produce the draft; PawScribe keeps no copy of it.</p>
+      <p>Every AI draft is marked DRAFT until you review it. PawScribe never files a note automatically.</p>
 
-      <h2 class="section-title">Contact</h2>
-      <p>Questions about privacy or PawScribe? Email us: <a href="mailto:hello@pawscribe.site">hello@pawscribe.site</a></p>
-      <p><a class="btn btn-ghost" href="pricing.html">See pricing</a></p>
+      <h2>Dictation and recording</h2>
+      <p>Dictation uses your browser&rsquo;s built-in Web Speech API. In Chrome, that API sends audio to Google&rsquo;s servers — that is the browser&rsquo;s behaviour, not ours, and it happens only when you press the microphone button. Recorded audio is captured in your browser and sent to the AI provider only when you ask for a draft.</p>
+
+      <h2>Payments</h2>
+      <p>Payments are handled by PayPal. PawScribe never sees or stores your card details. PayPal tells the site that a subscription is active; the unlock is stored locally in your browser.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy: <a href="mailto:hello@pawscribe.site">hello@pawscribe.site</a>.</p>
+
+      <p><small>Last updated: 19 November 2026.</small></p>
     </div>
   </section>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Footer">
-      <a href="index.html">Home</a>
-      <a href="templates.html">Templates</a>
-      <a href="app.html">Workspace</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html" aria-current="page">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
 </body>
 </html>

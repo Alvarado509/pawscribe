@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact PawScribe</title>
+<meta name="description" content="Contact PawScribe — questions, feedback, or help with the workspace. Email hello@pawscribe.site.">
+<link rel="canonical" href="https://alvarado509.github.io/pawscribe/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact PawScribe">
+<meta property="og:description" content="Questions, feedback, or help with the workspace.">
+<meta property="og:url" content="https://alvarado509.github.io/pawscribe/contact.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Contact PawScribe">
+<meta name="twitter:description" content="Questions, feedback, or help with the workspace.">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/marketing.css">
+<script defer src="assets/app.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero page-hero">
+    <div class="container">
+      <p><span class="eyebrow">Contact</span></p>
+      <h1 class="hero-title">Talk to <em>us</em></h1>
+      <p class="hero-sub">Questions, feedback, or help with the workspace — we read every message.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p>You can also email us directly: <a href="mailto:hello@pawscribe.site">hello@pawscribe.site</a></p>
+
+      <form id="contact-form">
+        <p>
+          <label class="form-label" for="contact-name">Your name</label>
+          <input class="form-input" type="text" id="contact-name" name="name" autocomplete="name" required>
+        </p>
+        <p>
+          <label class="form-label" for="contact-email">Your email</label>
+          <input class="form-input" type="email" id="contact-email" name="email" autocomplete="email" required>
+        </p>
+        <p>
+          <label class="form-label" for="contact-message">Message</label>
+          <textarea class="form-input" id="contact-message" name="message" rows="6" required></textarea>
+        </p>
+        <p><button class="btn btn-primary" type="submit">Send message</button></p>
+        <p class="demo-note">This form opens your email app — there is no backend, and nothing is sent to a server. Your message is addressed to hello@pawscribe.site.</p>
+      </form>
+
+      <div class="card" id="contact-success" hidden>
+        <h2 style="font-size:24px">Your email app should be open</h2>
+        <p>Your message is ready to send from your own email app. If nothing opened, email us directly at <a href="mailto:hello@pawscribe.site">hello@pawscribe.site</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("contact-form");
+  if (!form) return;
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var name = document.getElementById("contact-name").value.trim();
+    var email = document.getElementById("contact-email").value.trim();
+    var message = document.getElementById("contact-message").value.trim();
+    var subject = encodeURIComponent("PawScribe contact — " + name);
+    var body = encodeURIComponent(message + "\n\n— " + name + " (" + email + ")");
+    window.location.href = "mailto:hello@pawscribe.site?subject=" + subject + "&body=" + body;
+    var ok = document.getElementById("contact-success");
+    if (ok) ok.hidden = false;
+    form.hidden = true;
+  });
+});
+</script>
+</body>
+</html>

@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="A copy-ready SOAP template for veterinary exams, with a filled-in wellness sample and variations by visit type.">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
-<script defer src="assets/config.js"></script>
+<link rel="stylesheet" href="assets/marketing.css">
 <script defer src="assets/app.js"></script>
 <script type="application/ld+json">
 {
@@ -61,34 +61,68 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="36" height="36"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
   <article>
-    <section class="hero">
+    <section class="article-hero">
       <div class="container">
-        <h1 class="hero-title">Veterinary SOAP Note Template</h1>
+        <p><span class="eyebrow">Template</span></p>
+        <h1 class="hero-title">Veterinary SOAP Note <em>Template</em></h1>
         <p class="hero-sub">A copy-ready template for any vet visit — plus a filled-in wellness example and variations for sick visits, rechecks, and post-surgery checks.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
+      <div class="container prose">
         <p>Vets spend 2–3 hours per day on documentation, and one SOAP note takes 10–15 minutes by hand. A template does not write the note for you — it removes the blank page. You fill in the same four sections every time, in the same order, and nothing important gets forgotten.</p>
         <p>Copy the template below into your notes app, print it, or use it in the <a href="app.html">PawScribe workspace</a> — the templates there are free, with no account.</p>
 
-        <h2 class="section-title">The blank template</h2>
+        <h2>The blank template</h2>
         <div class="soap">
           <div class="soap-section">
             <p class="soap-label">Patient</p>
@@ -96,7 +130,7 @@
           </div>
           <div class="soap-section">
             <p class="soap-label">S — Subjective</p>
-            <p><strong>Chief complaint:</strong> what is the main reason for the visit, in the owner's own words?</p>
+            <p><strong>Chief complaint:</strong> what is the main reason for the visit, in the owner&rsquo;s own words?</p>
             <p><strong>History of present illness:</strong> onset, duration, progression, what makes it better or worse, treatments already tried at home. Include owner observations.</p>
             <p><strong>Relevant history:</strong> current medications, diet, environment, recent travel, previous conditions, vaccination status, parasite prevention.</p>
             <p><strong>Review of systems:</strong> appetite, thirst, urination, defecation, coughing, sneezing, vomiting, diarrhoea, energy, behaviour changes.</p>
@@ -108,7 +142,7 @@
           </div>
           <div class="soap-section">
             <p class="soap-label">A — Assessment</p>
-            <p><strong>Problem list:</strong> prioritised list of active problems from the Subjective and Objective findings. For a healthy patient: "healthy adult, no active problems."</p>
+            <p><strong>Problem list:</strong> prioritised list of active problems from the Subjective and Objective findings. For a healthy patient: &ldquo;healthy adult, no active problems.&rdquo;</p>
             <p><strong>Differential diagnoses:</strong> possible causes for each problem, in order of likelihood.</p>
             <p><strong>Diagnosis:</strong> confirmed diagnosis, or the most likely working diagnosis.</p>
           </div>
@@ -122,7 +156,7 @@
           </div>
         </div>
 
-        <h2 class="section-title">Filled-in sample: routine dog wellness visit</h2>
+        <h2>Filled-in sample: routine dog wellness visit</h2>
         <p>This is an example note, not a real patient. Names are placeholders.</p>
         <div class="soap">
           <div class="soap-section">
@@ -138,7 +172,7 @@
           </div>
           <div class="soap-section">
             <p class="soap-label">O — Objective</p>
-            <p><strong>BCS:</strong> 5/9. Hydration normal. Mentation: bright, alert, responsive. <strong>Temperature:</strong> 101.5°F. <strong>Pulse:</strong> 100 bpm, strong and regular. <strong>Respiration:</strong> 24/min.</p>
+            <p><strong>BCS:</strong> 5/9. Hydration normal. Mentation: bright, alert, responsive. <strong>Temperature:</strong> 101.5&deg;F. <strong>Pulse:</strong> 100 bpm, strong and regular. <strong>Respiration:</strong> 24/min.</p>
             <p><strong>Head, eyes, ears, nose, throat:</strong> ears clean, no discharge or odour; eyes clear; mild dental calculus on canines and premolars; mucous membranes pink, capillary refill time under 2 seconds. <strong>Lymph nodes:</strong> normal, non-painful. <strong>Skin:</strong> shiny coat, no hair loss, lesions, or parasites. <strong>Heart:</strong> regular rhythm, no murmurs. <strong>Lungs:</strong> clear on both sides, no cough. <strong>Abdomen:</strong> soft, non-painful, no organ enlargement. <strong>Musculoskeletal:</strong> strong gait, no lameness, joints supple. <strong>Neurological:</strong> cranial nerves intact, proprioception normal.</p>
             <p><strong>Diagnostics today:</strong> heartworm test negative; faecal flotation negative.</p>
           </div>
@@ -152,16 +186,16 @@
           </div>
         </div>
 
-        <h2 class="section-title">How to use this template</h2>
+        <h2>How to use this template</h2>
         <ol>
-          <li><strong>Gather the Subjective first.</strong> Collect the owner's story and the patient's history before you start the exam.</li>
+          <li><strong>Gather the Subjective first.</strong> Collect the owner&rsquo;s story and the patient&rsquo;s history before you start the exam.</li>
           <li><strong>Examine, then write the Objective.</strong> Record factual findings only — what you saw, felt, and measured.</li>
           <li><strong>Assess.</strong> From the S and O findings, list the problems, your differentials, and your working diagnosis.</li>
           <li><strong>Plan.</strong> Diagnostics, treatments, client education, and follow-up — with doses and a recheck date.</li>
           <li><strong>Be concise and specific.</strong> Short, professional sentences. Another vet should be able to pick up the case from your note alone.</li>
         </ol>
 
-        <h2 class="section-title">Variations by visit type</h2>
+        <h2>Variations by visit type</h2>
         <p>The SOAP structure never changes. What changes is where the detail goes.</p>
         <h3>Wellness exam</h3>
         <p><strong>S:</strong> routine care, preventative measures, owner concerns about overall health, diet, exercise, and parasite control. <strong>O:</strong> a complete head-to-tail exam, vital signs, BCS, and routine diagnostics such as a heartworm test and faecal exam. <strong>A:</strong> usually a healthy status, plus small preventative issues such as dental calculus or weight. <strong>P:</strong> vaccines, parasite prevention, diet and exercise advice, dental care, and the next preventative visit.</p>
@@ -172,52 +206,83 @@
         <h3>Post-surgery check</h3>
         <p><strong>S:</strong> recovery at home — activity, appetite, signs of pain, incision care, and any concerns. <strong>O:</strong> examine the surgical site closely for swelling, discharge, opening, or infection; check pain level, mentation, and vital signs. <strong>A:</strong> healing progress and whether any post-operative complications are present. <strong>P:</strong> incision care instructions, suture or staple removal if needed, pain-management adjustments, a gradual return to activity, and the next check.</p>
 
-        <h2 class="section-title">Frequently asked questions</h2>
+        <h2>Frequently asked questions</h2>
         <div class="faq">
           <details class="faq-item">
             <summary>Can I use this SOAP template for cats?</summary>
-            <p>Yes. The S/O/A/P structure is the same for every species. Change the prompts to fit the patient: litter box habits and indoor/outdoor status for cats, for example, instead of walks and dog-park visits.</p>
+            <p class="faq-answer">Yes. The S/O/A/P structure is the same for every species. Change the prompts to fit the patient: litter box habits and indoor/outdoor status for cats, for example, instead of walks and dog-park visits.</p>
           </details>
           <details class="faq-item">
             <summary>Do I need all four sections every time?</summary>
-            <p>Yes, even for a routine visit. For a healthy patient the Assessment can be one line — healthy adult, no active problems — and the Plan covers vaccines, parasite prevention, and the next visit.</p>
+            <p class="faq-answer">Yes, even for a routine visit. For a healthy patient the Assessment can be one line — healthy adult, no active problems — and the Plan covers vaccines, parasite prevention, and the next visit.</p>
           </details>
           <details class="faq-item">
             <summary>Can I change the template for my clinic?</summary>
-            <p>Yes. The template is a starting point. Add your clinic's standard phrases, remove sections you never use, and keep one version per visit type so the whole team writes notes the same way. PawScribe Pro lets you save custom templates in the workspace.</p>
+            <p class="faq-answer">Yes. The template is a starting point. Add your clinic&rsquo;s standard phrases, remove sections you never use, and keep one version per visit type so the whole team writes notes the same way. PawScribe Pro lets you save custom templates in the workspace.</p>
           </details>
           <details class="faq-item">
             <summary>How long does a SOAP note take to write?</summary>
-            <p>One SOAP note takes 10–15 minutes by hand, and vets spend 2–3 hours per day on documentation. A template removes the blank-page problem, and an AI scribe can turn rough notes into an editable SOAP draft in seconds.</p>
+            <p class="faq-answer">One SOAP note takes 10–15 minutes by hand, and vets spend 2–3 hours per day on documentation. A template removes the blank-page problem, and an AI scribe can turn rough notes into an editable SOAP draft in seconds.</p>
           </details>
         </div>
 
-        <div class="hero-cta">
+        <p class="hero-cta" style="margin-top:32px">
           <a class="btn btn-primary" href="templates.html">Browse all templates</a>
-          <a class="btn btn-ghost" href="app.html">Try the free workspace</a>
-        </div>
+          <a class="btn btn-secondary" href="app.html">Try the free workspace</a>
+        </p>
       </div>
     </section>
   </article>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Footer">
-      <a href="index.html">Home</a>
-      <a href="templates.html">Templates</a>
-      <a href="app.html">Workspace</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html" aria-current="page">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
 </body>
 </html>

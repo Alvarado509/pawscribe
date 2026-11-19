@@ -1,15 +1,19 @@
 # PawScribe
 
-> PawScribe is an AI scribe for veterinarians. It turns messy exam notes and dictation into clean, structured SOAP notes in seconds — right in the browser, with no app to install and no patient data stored on a server.
+> PawScribe is an AI scribe for veterinarians. It turns messy exam notes and dictation into clean, structured SOAP notes in seconds — right in the browser, with no app to install. Notes are saved only in the browser; text sent for AI drafting is not stored by PawScribe.
 
 ## Pages
 
-- [Home](https://alvarado509.github.io/pawscribe/index.html): What PawScribe does, how it works, and why vets save hours a week on notes.
+- [Home](https://alvarado509.github.io/pawscribe/index.html): What PawScribe does, how it works, and why vets save time on notes.
 - [Templates](https://alvarado509.github.io/pawscribe/templates.html): Ready-made SOAP note templates for common vet visits.
-- [App](https://alvarado509.github.io/pawscribe/app.html): The free in-browser scribe — paste notes, get a structured SOAP draft.
-- [Pricing](https://alvarado509.github.io/pawscribe/pricing.html): Free and Pro plans for individual vets and clinics.
+- [Write a note](https://alvarado509.github.io/pawscribe/app.html): The free in-browser scribe — paste notes, get a structured SOAP draft.
+- [Dashboard](https://alvarado509.github.io/pawscribe/dashboard.html): Saved notes and account overview for signed-in users.
+- [Sign in](https://alvarado509.github.io/pawscribe/auth.html): Sign in or create a PawScribe account.
+- [Pricing](https://alvarado509.github.io/pawscribe/pricing.html): Free, Pro ($49/month per vet), and Clinic ($119/month) plans.
+- [About](https://alvarado509.github.io/pawscribe/about.html): Who builds PawScribe and why.
+- [Privacy](https://alvarado509.github.io/pawscribe/privacy.html): How PawScribe handles your data — notes stay in your browser unless you choose otherwise.
+- [Terms](https://alvarado509.github.io/pawscribe/terms.html): Terms of use for PawScribe.
+- [Contact](https://alvarado509.github.io/pawscribe/contact.html): Get in touch with the PawScribe team.
 - [How to Write a SOAP Note](https://alvarado509.github.io/pawscribe/how-to-write-a-soap-note.html): A practical guide to writing clear Subjective, Objective, Assessment, and Plan sections.
 - [Veterinary SOAP Note Template](https://alvarado509.github.io/pawscribe/veterinary-soap-note-template.html): A copy-ready SOAP template for veterinary exams.
 - [How to Save Time on Vet Notes](https://alvarado509.github.io/pawscribe/how-to-save-time-on-vet-notes.html): Workflow tips to cut charting time without cutting corners.
-- [About](https://alvarado509.github.io/pawscribe/about.html): Who builds PawScribe and why.
-- [Privacy](https://alvarado509.github.io/pawscribe/privacy.html): How PawScribe handles your data — notes stay in your browser unless you choose otherwise.

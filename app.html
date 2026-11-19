@@ -4,70 +4,177 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Note workspace — PawScribe</title>
+<title>Write a note — PawScribe</title>
 <meta name="description" content="PawScribe note workspace: paste rough notes, dictate or record a consultation, and build an editable SOAP draft. Notes are saved only in your browser.">
 <link rel="canonical" href="https://alvarado509.github.io/pawscribe/app.html">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+/* v2 contract tokens (shared style.css is owned in parallel; these
+   page-level tokens apply the contract until it carries them). */
+:root {
+  --color-bg: #F9F4F1;
+  --color-ink: #28030F;
+  --color-body: #5B3E47;
+  --color-muted: #7A5563;
+  --color-border: #D4C4C9;
+  --color-teal: #0F766E;
+  --color-teal-dark: #0B5E57;
+  --color-teal-soft: #CCFBF1;
+  --color-amber-bg: #FFFBEB;
+  --color-amber-text: #92400E;
+}
+html[data-theme="dark"] {
+  --color-bg: #211217;
+  --color-ink: #FBF9FA;
+  --color-body: #E9E2E3;
+  --color-muted: #C39DA8;
+  --color-border: #4C2934;
+  --color-amber-bg: #451A03;
+  --color-amber-text: #FDE68A;
+}
+body { background: var(--color-bg); color: var(--color-body); font-size: 17px; line-height: 1.6; }
+h1, h2, h3 { color: var(--color-ink); }
+h2 { font-size: 32px; line-height: 40px; }
+.section { padding: 64px 0; }
+@media (min-width: 768px) { .section { padding: 84px 0; } }
+.btn { font-size: 15px; }
+@media (max-width: 767px) { .editor-actions .btn, .editor-input .btn { width: 100%; } }
+.icon { width: 20px; height: 20px; flex-shrink: 0; vertical-align: -4px; }
+.icon-record { color: #B91C1C; }
+.quota-counter { font-size: 15px; color: var(--color-muted); margin: 8px 0 0; }
+.quota-banner { background: var(--color-amber-bg); color: var(--color-amber-text); border: 1px solid #F59E0B; border-radius: 8px; padding: 16px; margin-top: 16px; }
+.quota-banner p { margin: 0 0 8px; }
+.quota-banner p:last-child { margin-bottom: 0; }
+.helper-line { font-size: 15px; color: var(--color-muted); margin: 8px 0 0; }
+.select-wrap { position: relative; }
+.select-wrap select { padding-right: 48px; }
+.select-wrap .icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--color-muted); }
+textarea.form-input { overflow-y: hidden; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.btn-row .btn { flex: 1 1 auto; }
+@media (min-width: 768px) { .btn-row .btn { flex: 0 0 auto; } }
+.disclaimer { font-size: 15px; color: var(--color-muted); }
+.sample-box { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; margin-top: 16px; }
+.sample-box p { margin: 0 0 8px; }
+.sample-box p:last-child { margin-bottom: 0; }
+details.ai-settings { margin-top: 24px; }
+details.ai-settings summary { min-height: 44px; cursor: pointer; font-weight: 600; color: var(--color-ink); }
+</style>
 <script src="assets/config.js" defer></script>
 <script src="assets/app.js" defer></script>
 <script src="assets/templates.js" defer></script>
 <script src="assets/ai.js" defer></script>
 <script src="assets/audio.js" defer></script>
+<script src="assets/workspace.js" defer></script>
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="40" height="40"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html" aria-current="page">Write a note</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html" aria-current="page">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
   <div class="container">
-    <h1>Note workspace</h1>
+    <h1>Write a note</h1>
     <p class="section-sub">Paste rough notes, dictate, or record — then review the SOAP draft before saving. Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
 
     <div class="tabs" role="tablist" aria-label="Workspace panels">
       <button class="tab tab-active" type="button" data-tab="input" role="tab">Input</button>
       <button class="tab" type="button" data-tab="draft" role="tab">Draft</button>
-      <button class="tab" type="button" data-tab="actions" role="tab">Actions</button>
+      <button class="tab" type="button" data-tab="actions" role="tab">Copy &amp; export</button>
     </div>
 
     <div class="editor">
       <section class="editor-input" data-panel="input" aria-label="Input">
         <h2>Rough notes</h2>
         <label class="form-label" for="rough-input">Paste your rough notes</label>
-        <textarea class="form-input" id="rough-input" rows="8" placeholder="e.g. Milo, 3yo Golden, soft stools 3 days, eating ok&#10;Temp 38.6, HR 92, weight 32kg, abdomen soft"></textarea>
-        <p>
-          <button class="btn btn-ghost" type="button" id="dictate-btn">Dictate</button>
-          <button class="btn btn-ghost" type="button" id="record-btn">Record</button>
-          <span id="record-status"></span>
-        </p>
-        <p id="audio-status"></p>
+        <textarea class="form-input" id="rough-input" rows="6" placeholder="e.g. Milo, 3yo Golden, soft stools 3 days, eating ok&#10;Temp 38.6, HR 92, weight 32kg, abdomen soft"></textarea>
+        <div class="btn-row">
+          <button class="btn btn-ghost" type="button" id="dictate-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mic"/></svg> Dictate</button>
+          <button class="btn btn-ghost" type="button" id="record-btn"><svg class="icon icon-record" aria-hidden="true"><use href="assets/icons.svg#record"/></svg> Record</button>
+        </div>
+        <p class="helper-line">Dictate = live transcription. Record = full consultation audio.</p>
+        <p id="record-status" class="helper-line"></p>
+        <p id="audio-status" class="helper-line"></p>
+
         <label class="form-label" for="template-picker">Template</label>
-        <select class="form-input" id="template-picker">
-          <option value="">Choose a template…</option>
-        </select>
-        <p><button class="btn btn-ghost" type="button" id="load-template-btn">Load template</button></p>
-        <p id="template-fields"></p>
-        <p>
+        <div class="select-wrap">
+          <select class="form-input" id="template-picker">
+            <option value="">Choose a template…</option>
+          </select>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevron-down"/></svg>
+        </div>
+        <p class="helper-line" id="template-helper"></p>
+        <div class="sample-box" id="template-sample" hidden></div>
+
+        <p style="margin-top: 24px;">
           <button class="btn btn-primary" type="button" id="generate-btn">Generate AI draft</button>
-          <span id="quota-status"></span>
         </p>
-        <p id="ai-status"></p>
-        <div class="lock-box" id="quota-lock" hidden>
+        <p class="quota-counter" id="quota-counter">AI notes used this month: 0 / 5</p>
+        <p style="margin-top: 16px;">
+          <button class="btn btn-ghost" type="button" id="format-btn">Format my notes</button>
+        </p>
+        <p id="ai-status" class="helper-line"></p>
+        <div class="quota-banner" id="quota-banner" hidden>
           <p><strong>AI notes limit reached for this month.</strong></p>
-          <p>You have used your 5 free AI notes this month. The templates and note builder still work — or upgrade to Pro for 400 AI notes a month.</p>
+          <p>You have used your free AI notes this month. The templates and note builder still work — or upgrade to Pro for 400 AI notes a month.</p>
           <p><a class="btn btn-primary" href="pricing.html">See Pro pricing</a></p>
         </div>
+
+        <details class="ai-settings">
+          <summary>AI settings (optional)</summary>
+          <p class="helper-line">Add your own Gemini key to draft with AI while the PawScribe drafting service connects. Your key stays in this browser only.</p>
+          <label class="form-label" for="byok-key">Your Gemini key</label>
+          <input class="form-input" type="password" id="byok-key" autocomplete="off" placeholder="Paste your Gemini API key">
+          <p style="margin-top: 16px;">
+            <button class="btn btn-ghost" type="button" id="byok-save">Save key</button>
+            <button class="btn btn-ghost" type="button" id="byok-clear">Remove key</button>
+          </p>
+          <p class="helper-line" id="byok-status"></p>
+        </details>
       </section>
 
       <section class="editor-draft" data-panel="draft" aria-label="SOAP draft">
@@ -76,35 +183,36 @@
         <div class="soap">
           <div class="soap-section">
             <label class="soap-label" for="soap-s">S — Subjective</label>
-            <textarea class="form-input" id="soap-s" rows="4"></textarea>
+            <textarea class="form-input" id="soap-s" placeholder="Not recorded" rows="3"></textarea>
           </div>
           <div class="soap-section">
             <label class="soap-label" for="soap-o">O — Objective</label>
-            <textarea class="form-input" id="soap-o" rows="4"></textarea>
+            <textarea class="form-input" id="soap-o" placeholder="Not recorded" rows="3"></textarea>
           </div>
           <div class="soap-section">
             <label class="soap-label" for="soap-a">A — Assessment</label>
-            <textarea class="form-input" id="soap-a" rows="3"></textarea>
+            <textarea class="form-input" id="soap-a" placeholder="Not recorded" rows="2"></textarea>
           </div>
           <div class="soap-section">
             <label class="soap-label" for="soap-p">P — Plan</label>
-            <textarea class="form-input" id="soap-p" rows="4"></textarea>
+            <textarea class="form-input" id="soap-p" placeholder="Not recorded" rows="3"></textarea>
           </div>
         </div>
-        <p class="empty-state" id="draft-empty">No draft yet — paste rough notes, dictate, record, or load a template.</p>
-        <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+        <p class="empty-state" id="draft-empty">No draft yet — paste rough notes, dictate, record, or pick a template.</p>
+        <p class="disclaimer">PawScribe drafts notes; it does not diagnose or treat. Always review before saving.</p>
+        <p class="disclaimer">Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
       </section>
 
-      <section class="editor-actions" data-panel="actions" aria-label="Actions">
-        <h2>Actions</h2>
+      <section class="editor-actions" data-panel="actions" aria-label="Copy and export">
+        <h2>Copy &amp; export</h2>
         <p>
-          <button class="btn btn-ghost" type="button" id="copy-btn">Copy</button>
-          <button class="btn btn-ghost" type="button" id="download-btn">Download (.txt)</button>
-          <button class="btn btn-primary" type="button" id="save-btn">Save</button>
+          <button class="btn btn-ghost" type="button" id="copy-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#copy"/></svg> Copy</button>
+          <button class="btn btn-ghost" type="button" id="download-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg> Download (.txt)</button>
+          <button class="btn btn-primary" type="button" id="save-btn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#save"/></svg> Save</button>
           <button class="btn btn-ghost" type="button" id="new-btn">New note</button>
           <button class="btn btn-ghost" type="button" id="export-btn">Export JSON</button>
         </p>
-        <p id="save-status"></p>
+        <p id="save-status" class="helper-line"></p>
         <div class="lock-box" id="discharge-lock" hidden>
           <p><strong>Discharge instructions are a Pro feature.</strong></p>
           <p><a class="btn btn-primary" href="pricing.html">Upgrade to Pro</a></p>
@@ -120,9 +228,9 @@
     </div>
 
     <section class="section">
-      <h2 class="section-title">History</h2>
+      <h2 class="section-title">Full note history</h2>
       <p>Save your notes — history is stored only in this browser.</p>
-      <p id="history-lock-note" hidden>Free keeps your last 10 notes. Full history is Pro.</p>
+      <p id="history-lock-note" hidden>Free keeps your last 10 notes. Full note history is Pro.</p>
       <div class="note-history" id="note-history"></div>
       <p class="empty-state" id="history-empty">No saved notes yet.</p>
       <p><button class="btn btn-ghost" type="button" id="export-all-btn">Export all notes (JSON)</button></p>
@@ -130,327 +238,55 @@
   </div>
 </main>
 
-<a class="floating-contact" href="mailto:hello@pawscribe.site" aria-label="Contact PawScribe by email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
-
 <footer class="site-footer">
-  <div class="container">
-    <p><a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32"> PawScribe</a></p>
-    <p>
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
-    </p>
-    <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
-    <p>© <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html" aria-current="page">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
 <div class="toast" hidden></div>
-
-<script>
-/* Workspace logic. No draft is ever faked: an AI draft only appears
-   after a real drafting-service response. Until the service is
-   connected, Generate shows the honest state and the templates work. */
-document.addEventListener("DOMContentLoaded", function () {
-  var NOTES_KEY = "pawscribe_notes_v1";
-  var HISTORY_CAP = 100;
-  var FREE_HISTORY_CAP = 10;
-
-  function $(id) { return document.getElementById(id); }
-  function toast(msg) {
-    if (window.PawScribe) window.PawScribe.showToast(msg);
-  }
-  function soapText() {
-    return "S — Subjective\n" + $("soap-s").value.trim() +
-      "\n\nO — Objective\n" + $("soap-o").value.trim() +
-      "\n\nA — Assessment\n" + $("soap-a").value.trim() +
-      "\n\nP — Plan\n" + $("soap-p").value.trim();
-  }
-  function hasDraft() {
-    return ["soap-s", "soap-o", "soap-a", "soap-p"].some(function (id) { return $(id).value.trim() !== ""; });
-  }
-  function refreshEmptyState() {
-    $("draft-empty").hidden = hasDraft();
-  }
-  function setDraft(soap, markDraft) {
-    $("soap-s").value = soap.S || "";
-    $("soap-o").value = soap.O || "";
-    $("soap-a").value = soap.A || "";
-    $("soap-p").value = soap.P || "";
-    $("draft-banner").hidden = !markDraft;
-    refreshEmptyState();
-  }
-  function download(filename, text, type) {
-    var blob = new Blob([text], { type: type || "text/plain" });
-    var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
-  }
-
-  /* ---------- mobile tabs ---------- */
-  var tabs = document.querySelectorAll(".tab");
-  var panels = document.querySelectorAll("[data-panel]");
-  function showPanel(name) {
-    tabs.forEach(function (t) { t.classList.toggle("tab-active", t.getAttribute("data-tab") === name); });
-    panels.forEach(function (p) {
-      p.hidden = window.innerWidth < 768 && p.getAttribute("data-panel") !== name;
-    });
-  }
-  tabs.forEach(function (t) {
-    t.addEventListener("click", function () { showPanel(t.getAttribute("data-tab")); });
-  });
-  window.addEventListener("resize", function () {
-    if (window.innerWidth >= 768) panels.forEach(function (p) { p.hidden = false; });
-  });
-  showPanel("input");
-
-  /* ---------- template picker ---------- */
-  var picker = $("template-picker");
-  function fillPicker() {
-    (window.PAWSCRIBE_TEMPLATES || []).forEach(function (t) {
-      var opt = document.createElement("option");
-      opt.value = t.id;
-      opt.textContent = t.title + " (" + t.species + ")";
-      picker.appendChild(opt);
-    });
-    var params = new URLSearchParams(window.location.search);
-    var pre = params.get("template");
-    if (pre) { picker.value = pre; loadTemplate(); }
-  }
-  function loadTemplate() {
-    var t = (window.PAWSCRIBE_TEMPLATES || []).find(function (x) { return x.id === picker.value; });
-    if (!t) return;
-    var fieldsText = t.fields.map(function (f) { return f.label + ": " + f.placeholder; }).join("\n");
-    $("template-fields").textContent = "Fields: " + t.fields.map(function (f) { return f.label; }).join(" · ");
-    $("rough-input").value = fieldsText;
-    setDraft(t.soap, true);
-    toast("Template loaded — edit every line before saving.");
-  }
-  $("load-template-btn").addEventListener("click", loadTemplate);
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", fillPicker);
-  } else { fillPicker(); }
-
-  /* ---------- dictation + recording ---------- */
-  $("dictate-btn").addEventListener("click", function () {
-    var btn = $("dictate-btn");
-    if (window.PawScribeAudio && window.PawScribeAudio.isDictating()) {
-      window.PawScribeAudio.stopDictation();
-      btn.textContent = "Dictate";
-      return;
-    }
-    window.PawScribeAudio.startDictation({
-      onStart: function () { btn.textContent = "Stop dictating"; },
-      onResult: function (text) {
-        var input = $("rough-input");
-        input.value = (input.value ? input.value + " " : "") + text;
-      },
-      onEnd: function () { btn.textContent = "Dictate"; },
-      onError: function (msg) { $("audio-status").textContent = msg; btn.textContent = "Dictate"; }
-    });
-  });
-  $("record-btn").addEventListener("click", function () {
-    var btn = $("record-btn");
-    if (window.PawScribeAudio.isRecording()) {
-      window.PawScribeAudio.stopRecording();
-      btn.textContent = "Record";
-      return;
-    }
-    window.PawScribeAudio.startRecording({
-      onStart: function () { btn.textContent = "Stop recording"; $("record-status").textContent = "Recording… 0:00"; },
-      onTick: function (dur) { $("record-status").textContent = "Recording… " + dur; },
-      onStop: function (blob, dur) {
-        $("record-status").textContent = "Recording captured (" + dur + ") — kept in this browser only.";
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "pawscribe-recording.webm";
-        a.textContent = "Download recording";
-        a.className = "btn btn-ghost";
-        $("audio-status").textContent = "";
-        $("audio-status").appendChild(a);
-        $("audio-status").appendChild(document.createTextNode(" Transcription is not connected — dictate or paste your notes to draft."));
-      },
-      onError: function (msg) { $("audio-status").textContent = msg; btn.textContent = "Record"; }
-    });
-  });
-
-  /* ---------- quota display + lock ---------- */
-  function refreshQuota() {
-    var q = window.PawScribe.getQuota();
-    var limit = window.PawScribe.quotaLimit();
-    $("quota-status").textContent = "AI notes used this month: " + q.used + " / " + limit;
-    var reached = window.PawScribe.quotaReached();
-    $("quota-lock").hidden = !reached;
-    $("generate-btn").hidden = reached;
-    return reached;
-  }
-  refreshQuota();
-
-  /* ---------- AI generate ---------- */
-  $("generate-btn").addEventListener("click", async function () {
-    var status = $("ai-status");
-    if (window.PawScribe.quotaReached()) { refreshQuota(); return; }
-    var text = $("rough-input").value.trim();
-    if (!text) { status.textContent = "Paste or dictate some rough notes first."; return; }
-    var workerUrl = (window.PAWSCRIBE_CONFIG && window.PAWSCRIBE_CONFIG.WORKER_URL) || "";
-    if (!workerUrl) {
-      /* No drafting service is connected, so there is nothing to wait
-         for — show the honest state immediately, with no fake loading. */
-      status.textContent = "AI drafting connects soon — the free templates work now.";
-      return;
-    }
-    status.textContent = "Contacting the drafting service…";
-    var result;
-    try {
-      result = await window.PawScribeAI.draftWithAI(text);
-    } catch (e) {
-      status.textContent = "Could not reach the drafting service — check your connection and try again. The free templates work now.";
-      return;
-    }
-    if (result && result.ok) {
-      window.PawScribe.incrementQuota();
-      setDraft(result.soap, true);
-      status.textContent = "";
-      refreshQuota();
-      toast("AI draft ready — review every line before saving.");
-    } else if (result && result.reason === "empty") {
-      status.textContent = "Paste or dictate some rough notes first.";
-    } else {
-      status.textContent = "AI drafting connects soon — the free templates work now.";
-    }
-  });
-
-  /* ---------- draft edits keep the DRAFT banner ---------- */
-  ["soap-s", "soap-o", "soap-a", "soap-p"].forEach(function (id) {
-    $(id).addEventListener("input", refreshEmptyState);
-  });
-
-  /* ---------- actions ---------- */
-  $("copy-btn").addEventListener("click", function () {
-    if (!hasDraft()) { toast("Nothing to copy yet."); return; }
-    var done = function () { toast("SOAP note copied."); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(soapText()).then(done, function () { toast("Copy did not work in this browser — select the draft text instead."); });
-    } else { toast("Copy is not supported in this browser — select the draft text instead."); }
-  });
-  $("download-btn").addEventListener("click", function () {
-    if (!hasDraft()) { toast("Nothing to download yet."); return; }
-    download("pawscribe-soap-note.txt", soapText());
-    toast("Note downloaded.");
-  });
-  $("new-btn").addEventListener("click", function () {
-    $("rough-input").value = "";
-    setDraft({ S: "", O: "", A: "", P: "" }, false);
-    $("ai-status").textContent = "";
-    $("save-status").textContent = "";
-    showPanel("input");
-  });
-
-  /* ---------- history ---------- */
-  function loadNotes() {
-    try {
-      var raw = localStorage.getItem(NOTES_KEY);
-      var notes = raw ? JSON.parse(raw) : [];
-      return Array.isArray(notes) ? notes : [];
-    } catch (e) { return []; }
-  }
-  function storeNotes(notes) {
-    try { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); } catch (e) { /* storage unavailable */ }
-  }
-  function renderHistory() {
-    var list = $("note-history");
-    list.textContent = "";
-    var notes = loadNotes();
-    $("history-empty").hidden = notes.length > 0;
-    var isFree = window.PawScribe.getPlan() === "free";
-    $("history-lock-note").hidden = !(isFree && notes.length >= FREE_HISTORY_CAP);
-    notes.slice().reverse().forEach(function (note) {
-      var item = document.createElement("div");
-      item.className = "history-item";
-      var title = document.createElement("p");
-      var date = note.savedAt ? new Date(note.savedAt).toLocaleString() : "Undated";
-      title.textContent = date + " — " + (note.soap.S || "").slice(0, 80);
-      var loadBtn = document.createElement("button");
-      loadBtn.className = "btn btn-ghost";
-      loadBtn.type = "button";
-      loadBtn.textContent = "Load";
-      loadBtn.addEventListener("click", function () {
-        setDraft(note.soap, true);
-        showPanel("draft");
-        toast("Note loaded — review before saving.");
-      });
-      var delBtn = document.createElement("button");
-      delBtn.className = "btn btn-ghost";
-      delBtn.type = "button";
-      delBtn.textContent = "Delete";
-      delBtn.addEventListener("click", function () {
-        storeNotes(loadNotes().filter(function (n) { return n.id !== note.id; }));
-        renderHistory();
-        toast("Note deleted.");
-      });
-      item.appendChild(title);
-      item.appendChild(loadBtn);
-      item.appendChild(delBtn);
-      list.appendChild(item);
-    });
-  }
-  $("save-btn").addEventListener("click", function () {
-    if (!hasDraft()) { $("save-status").textContent = "Nothing to save yet — write or load a draft first."; return; }
-    var notes = loadNotes();
-    notes.push({
-      id: "note-" + Date.now(),
-      savedAt: new Date().toISOString(),
-      soap: { S: $("soap-s").value, O: $("soap-o").value, A: $("soap-a").value, P: $("soap-p").value }
-    });
-    var isFree = window.PawScribe.getPlan() === "free";
-    if (isFree && notes.length > FREE_HISTORY_CAP) {
-      notes = notes.slice(-FREE_HISTORY_CAP);
-      $("save-status").textContent = "Saved. Free keeps your last 10 notes — full history is Pro.";
-    } else {
-      if (notes.length > HISTORY_CAP) notes = notes.slice(-HISTORY_CAP);
-      $("save-status").textContent = "Saved in this browser.";
-    }
-    storeNotes(notes);
-    renderHistory();
-    toast("Note saved.");
-  });
-  function exportAll() {
-    download("pawscribe-notes.json", JSON.stringify(loadNotes(), null, 2), "application/json");
-    toast("Notes exported as JSON.");
-  }
-  $("export-btn").addEventListener("click", exportAll);
-  $("export-all-btn").addEventListener("click", exportAll);
-  renderHistory();
-
-  /* ---------- discharge instructions (Pro only) ---------- */
-  if (window.PawScribe.isPro()) {
-    $("discharge-box").hidden = false;
-  } else {
-    $("discharge-lock").hidden = false;
-  }
-  $("discharge-build-btn").addEventListener("click", function () {
-    var plan = $("soap-p").value.trim() || "[not stated]";
-    $("discharge-text").value =
-      "Home care instructions\n\n" +
-      "Follow the plan your veterinarian discussed with you:\n" + plan +
-      "\n\nCall the clinic if you notice vomiting, loss of appetite, swelling, bleeding, or if your pet seems worse in any way.";
-  });
-  $("discharge-copy-btn").addEventListener("click", function () {
-    var text = $("discharge-text").value;
-    if (!text.trim()) { toast("Build the instructions first."); return; }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () { toast("Instructions copied."); });
-    }
-  });
-});
-</script>
 </body>
 </html>

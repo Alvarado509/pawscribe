@@ -17,6 +17,7 @@
 <meta name="twitter:image" content="https://alvarado509.github.io/pawscribe/assets/pawscribe-logo.jpg">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/marketing.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -43,287 +44,354 @@
   ]
 }
 </script>
-<script src="assets/config.js" defer></script>
-<script src="assets/app.js" defer></script>
-<script src="assets/templates.js" defer></script>
+<script defer src="assets/app.js"></script>
+<script defer src="assets/templates.js"></script>
+<script defer src="assets/demo.js"></script>
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="40" height="40"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1 class="hero-title">Your notes, done before you leave the exam room.</h1>
-      <p class="hero-sub">PawScribe turns rough notes, dictation or a recorded consultation into an editable SOAP draft in seconds — so you finish the record with the patient, not after hours.</p>
+      <p><span class="eyebrow">AI scribe for veterinarians</span></p>
+      <h1 class="hero-title">Your notes, <em>done</em> before you leave the exam room.</h1>
+      <p class="hero-sub">PawScribe turns rough notes, dictation or a recorded consultation into an editable SOAP draft in seconds.</p>
       <p class="hero-cta">
-        <a class="btn btn-primary" href="app.html">Try the free demo</a>
-        <a class="btn btn-ghost" href="pricing.html">See pricing</a>
+        <a class="btn btn-primary" href="auth.html">Try free</a>
+        <a class="btn btn-secondary" href="#how">See how it works</a>
       </p>
-      <p class="trust-strip">No install · No account for free · Notes stay in your browser</p>
-    </div>
-  </section>
+      <p class="hero-micro">Free templates &middot; No account needed &middot; Notes stay in your browser</p>
 
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Try it right now</h2>
-      <p class="section-sub">Type 3 rough lines about a visit. PawScribe formats them into a SOAP note on this page — no account, no network, nothing leaves your browser.</p>
-      <div class="demo-box">
-        <label class="form-label" for="demo-input">Type 3 rough lines about a visit</label>
-        <textarea class="form-input" id="demo-input" rows="4" placeholder="Milo, 3yo Golden, owner says soft stools 3 days, eating ok&#10;Temp 38.6, HR 92, weight 32kg, abdomen soft&#10;Plan: bland diet, recheck in 1 week"></textarea>
-        <p><button class="btn btn-primary" type="button" id="demo-format">Format as SOAP</button></p>
+      <!-- Live demo -->
+      <div class="card demo-card" id="demo">
+        <h2 class="section-title">Try it right now</h2>
+        <p class="section-sub" style="margin-bottom:24px">Type a few rough lines about a visit. PawScribe formats them into a SOAP note on this page — no account, no network.</p>
+        <div class="demo-tabs" role="tablist" aria-label="Demo modes">
+          <button class="demo-tab" type="button" role="tab" data-tab="scribe" aria-selected="true">Scribe</button>
+          <button class="demo-tab" type="button" role="tab" data-tab="dictate" aria-selected="false">Dictate</button>
+          <button class="demo-tab" type="button" role="tab" data-tab="templates" aria-selected="false">Templates</button>
+        </div>
+
+        <div id="demo-panel-scribe" role="tabpanel">
+          <label class="form-label" for="demo-input">Type a few rough lines about a visit</label>
+          <textarea class="form-input" id="demo-input" rows="3" placeholder="Milo, 3yo Golden, owner says soft stools 3 days, eating ok&#10;Temp 38.6, HR 92, weight 32kg, abdomen soft&#10;Plan: bland diet, recheck in 1 week"></textarea>
+          <p class="demo-actions">
+            <button class="btn btn-primary" type="button" id="demo-format">Format as SOAP</button>
+          </p>
+        </div>
+
+        <div id="demo-panel-dictate" role="tabpanel" hidden>
+          <p>Speak your notes. The text goes straight into the Scribe tab — nothing is recorded or stored.</p>
+          <p class="demo-mic-row">
+            <button class="btn btn-primary" type="button" id="demo-mic">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mic"/></svg>
+              Start dictation
+            </button>
+          </p>
+          <p class="demo-status" id="demo-dictate-status" role="status"></p>
+          <p class="demo-note">In Chrome, dictation audio is sent to Google by the browser — that is the browser&rsquo;s behaviour, not PawScribe&rsquo;s.</p>
+        </div>
+
+        <div id="demo-panel-templates" role="tabpanel" hidden>
+          <p>Pick a visit type. Sample text loads into the Scribe tab — edit it, then format it.</p>
+          <p class="demo-field-row">
+            <button class="demo-chip" type="button" data-sample="wellness">Dog wellness exam</button>
+            <button class="demo-chip" type="button" data-sample="sick">Sick visit</button>
+            <button class="demo-chip" type="button" data-sample="recheck">Surgery recheck</button>
+          </p>
+        </div>
+
         <div class="demo-output" id="demo-output" hidden>
+          <div class="draft-strip">DRAFT — review every line before saving. Nothing was added beyond what you typed.</div>
           <div class="soap">
-            <p><strong>Sample SOAP note</strong> — formatted on this page from your lines. Review and edit every line before use.</p>
-            <div class="soap-section"><p class="soap-label">S — Subjective</p><p id="demo-s"></p></div>
-            <div class="soap-section"><p class="soap-label">O — Objective</p><p id="demo-o"></p></div>
-            <div class="soap-section"><p class="soap-label">A — Assessment</p><p id="demo-a"></p></div>
-            <div class="soap-section"><p class="soap-label">P — Plan</p><p id="demo-p"></p></div>
+            <div class="soap-section"><p class="soap-label">S — Subjective</p><p id="demo-s">Not recorded</p></div>
+            <div class="soap-section"><p class="soap-label">O — Objective</p><p id="demo-o">Not recorded</p></div>
+            <div class="soap-section"><p class="soap-label">A — Assessment</p><p id="demo-a">Not recorded</p></div>
+            <div class="soap-section"><p class="soap-label">P — Plan</p><p id="demo-p">Not recorded</p></div>
           </div>
+          <p class="demo-actions"><button class="btn btn-secondary" type="button" id="demo-copy">Copy note</button></p>
         </div>
         <p class="empty-state" id="demo-empty">Your formatted note will appear here.</p>
+        <p class="demo-note">This demo runs locally — nothing leaves your browser.</p>
+      </div>
+
+      <!-- Workspace screenshot -->
+      <div class="browser-frame">
+        <div class="browser-frame-bar">
+          <span class="browser-dot" aria-hidden="true"></span>
+          <span class="browser-dot" aria-hidden="true"></span>
+          <span class="browser-dot" aria-hidden="true"></span>
+          <span>pawscribe — workspace</span>
+        </div>
+        <img src="assets/hero-workspace.png" alt="PawScribe workspace with a completed SOAP note" width="1280" height="800">
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <!-- How it works -->
+  <section class="section" id="how">
     <div class="container">
-      <h2 class="section-title">How PawScribe works</h2>
-      <div class="steps">
-        <div class="step">
-          <p class="step-num">Step 1</p>
-          <h3>Before</h3>
-          <p>Review the AI summary before the appointment</p>
-          <div class="card">
-            <p><strong>Previous Visits</strong></p>
-            <p>3 visits in the last 12 months — recurring GI issues, last visit 6 weeks ago.</p>
-          </div>
-          <div class="card">
-            <p><strong>Lab Results</strong></p>
-            <p>Last panel within normal limits. Fecal screen negative.</p>
-          </div>
-          <div class="summary-card">
-            <p><strong>AI Summary</strong> <span class="pill pill-ready">Ready</span></p>
-            <p><strong>KEY FINDINGS</strong><br>3-year-old Golden Retriever with recurring GI issues, soft stools for 3 days, appetite normal.</p>
-            <p><strong>PREVIOUS TREATMENT</strong><br>Metronidazole 250mg, probiotics prescribed at the last visit.</p>
-            <p><strong>ALLERGIES</strong><br>[not stated]</p>
-            <p><small>Sample summary — shown so you can judge the format before the appointment.</small></p>
-          </div>
-        </div>
-        <div class="step">
-          <p class="step-num">Step 2</p>
-          <h3>During</h3>
-          <p>Focus on your patient while PawScribe captures the visit</p>
-          <div class="card">
-            <p><strong>Speak, record or paste.</strong> Dictate as you examine, record the consultation, or paste rough notes.</p>
-            <p><strong>Review the draft.</strong> Every draft is marked DRAFT until you review it. You edit, you decide what goes in the record.</p>
-            <p><strong>Save it locally.</strong> Notes are saved only in your browser — nothing is stored by PawScribe.</p>
-          </div>
-        </div>
-      </div>
+      <h2 class="section-title">How PawScribe <em>works</em></h2>
+      <p class="section-sub">Three steps. No install, no setup, no training session.</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Type, dictate or paste.</h3>
+          <p>Rough notes, spoken findings, or a recorded consultation — whatever is fastest between patients.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Review the SOAP draft.</h3>
+          <p>Every draft is marked DRAFT until you check it. You edit, you decide what goes in the record.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Copy or save.</h3>
+          <p>Copy it into your practice system, print it, or save it in your browser history.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
+  <!-- The problem, in verified numbers -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">The documentation problem, in numbers</h2>
+      <h2 class="section-title">The documentation <em>problem</em></h2>
       <p class="section-sub">Verified market facts — no invented clinics, no invented savings.</p>
-      <div class="grid">
-        <div class="case-card">
-          <p class="stat"><span class="stat-number">130,415</span><br><span class="stat-label">Veterinarians in the US</span></p>
-        </div>
-        <div class="case-card">
-          <p class="stat"><span class="stat-number">93.9%</span><br><span class="stat-label">of practices independently owned</span></p>
-        </div>
-        <div class="case-card">
-          <p class="stat"><span class="stat-number">2–3 h</span><br><span class="stat-label">spent on notes every day</span></p>
-        </div>
-        <div class="case-card">
-          <p class="stat"><span class="stat-number">10–15 min</span><br><span class="stat-label">to write one SOAP note by hand</span></p>
-        </div>
-        <div class="case-card">
-          <p class="stat"><span class="stat-number">$163,014</span><br><span class="stat-label">average vet income per year</span></p>
-        </div>
-        <div class="case-card">
-          <p class="stat"><span class="stat-number">$8.2M</span><br><span class="stat-label">seed raised by Scribenote, led by Andreessen Horowitz (a16z)</span></p>
-        </div>
+      <div class="grid grid-4">
+        <div class="stat"><span class="stat-number">130,415</span><span class="stat-label">veterinarians in the US</span></div>
+        <div class="stat"><span class="stat-number">93.9%</span><span class="stat-label">of vet practices independently owned</span></div>
+        <div class="stat"><span class="stat-number">2–3 h</span><span class="stat-label">spent on documentation every day</span></div>
+        <div class="stat"><span class="stat-number">10–15 min</span><span class="stat-label">to write one SOAP note by hand</span></div>
       </div>
-      <p>VetRec is Y Combinator S23. Abridge — the same idea for human doctors — is valued at $5.3B. The AI scribe category is proven; veterinary medicine is where it is heading next.</p>
+      <p>One vet-hour earns about $288 in revenue. Every hour spent typing notes is an hour not spent with patients.</p>
     </div>
   </section>
 
+  <!-- Features: real product UI, live renderings -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">SOAP templates, ready to use</h2>
+      <h2 class="section-title">Built for the <em>exam</em> room</h2>
+      <p class="section-sub">What the workspace actually looks like — live renderings, not illustrations.</p>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>SOAP notes, handled.</h3>
+          <p>Rough notes in, a structured draft out. You review every line before it goes anywhere.</p>
+          <div class="ui-mock" aria-label="Sample SOAP draft">
+            <div class="draft-strip">DRAFT — review before saving</div>
+            <div class="ui-mock-row"><span class="ui-mock-label">S — Subjective</span><p>Owner reports Milo is eating normally, soft stools for 3 days.</p></div>
+            <div class="ui-mock-row"><span class="ui-mock-label">O — Objective</span><p>Temp 38.6 C, heart rate 92, weight 32 kg. Abdomen soft.</p></div>
+            <div class="ui-mock-row"><span class="ui-mock-label">A — Assessment</span><p>Not recorded</p></div>
+            <div class="ui-mock-row"><span class="ui-mock-label">P — Plan</span><p>Bland diet, recheck in 1 week.</p></div>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Templates that ask the right questions.</h3>
+          <p>One template per visit type, with the fields that visit actually needs.</p>
+          <div class="ui-mock" aria-label="Sample template">
+            <p><strong>Dog Wellness Exam</strong> <span class="pill">Dog</span></p>
+            <div class="ui-mock-field"><span>Patient</span><span>Milo, 3-year-old Golden Retriever</span></div>
+            <div class="ui-mock-field"><span>Owner concerns</span><span>None reported</span></div>
+            <div class="ui-mock-field"><span>Vaccines given</span><span>Rabies, DHPP</span></div>
+            <span class="ui-mock-cta">Use this template</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Your notes, saved in your browser.</h3>
+          <p>History and plan usage live on your device. Nothing is stored by PawScribe.</p>
+          <div class="ui-mock" aria-label="Sample usage and history">
+            <p><strong>This month</strong></p>
+            <div class="ui-mock-bar" role="img" aria-label="3 of 5 free AI notes used"><span></span></div>
+            <p>3 of 5 free AI notes used</p>
+            <div class="ui-mock-field"><span>Today</span><span>Dog Wellness Exam</span></div>
+            <div class="ui-mock-field"><span>Yesterday</span><span>Vaccination Visit</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Template preview -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">SOAP templates, <em>ready</em> to use</h2>
       <p class="section-sub">Free templates you can open in the workspace and fill in — no account needed.</p>
       <div class="grid" id="template-preview"></div>
-      <p><a class="btn btn-ghost" href="templates.html">See all templates</a></p>
+      <p><a class="btn btn-secondary" href="templates.html">See all templates</a></p>
     </div>
   </section>
 
+  <!-- Pricing preview -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Simple pricing</h2>
-      <p class="section-sub">Start free. Upgrade when the AI drafting pays for itself.</p>
-      <div class="grid">
-        <div class="price-card">
+      <h2 class="section-title">Simple <em>pricing</em></h2>
+      <p class="section-sub">Start free. Upgrade when the AI drafting pays for itself. All pricing in USD.</p>
+      <div class="grid grid-3">
+        <article class="price-card">
           <h3>Free</h3>
-          <p class="price-amount">$0</p>
+          <p class="price-amount">$0 <span>/ month</span></p>
           <ul class="check-list">
-            <li>SOAP templates</li>
-            <li>Note builder</li>
-            <li>5 AI notes / month</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>SOAP templates</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Note builder</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>5 AI notes / month</li>
           </ul>
-          <p><a class="btn btn-ghost" href="app.html">Start free</a></p>
-        </div>
-        <div class="price-card price-featured">
+          <p><a class="btn btn-secondary" href="app.html">Start free</a></p>
+        </article>
+        <article class="price-card price-featured">
+          <p><span class="pill pill-solid">Most Popular</span></p>
           <h3>Pro</h3>
-          <p class="price-amount">$49<span>/vet/month</span></p>
+          <p class="price-amount">$49 <span>/ vet / month</span></p>
           <ul class="check-list">
-            <li>400 AI notes / month</li>
-            <li>Custom templates</li>
-            <li>Full note history</li>
-            <li>Discharge instructions</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>400 AI notes / month</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Custom templates</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Full note history</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Discharge instructions</li>
           </ul>
           <p><a class="btn btn-primary" href="pricing.html">Choose Pro</a></p>
-        </div>
-        <div class="price-card">
+        </article>
+        <article class="price-card">
           <h3>Clinic</h3>
-          <p class="price-amount">$119<span>/month</span></p>
+          <p class="price-amount">$119 <span>/ month</span></p>
           <ul class="check-list">
-            <li>5 vets included</li>
-            <li>2,000 AI notes / month</li>
-            <li>Shared templates</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Up to 5 vets included</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>2,000 AI notes / month</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Shared templates</li>
           </ul>
-          <p><a class="btn btn-ghost" href="pricing.html">Choose Clinic</a></p>
-        </div>
+          <p><a class="btn btn-secondary" href="pricing.html">Choose Clinic</a></p>
+        </article>
       </div>
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Questions vets ask</h2>
+      <h2 class="section-title">Questions vets <em>ask</em></h2>
       <div class="faq">
-        <div class="faq-item">
-          <h3>Where are my notes stored?</h3>
-          <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Do I need an account to use the free templates?</h3>
-          <p>No. The templates and the note builder work with no account and no install.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Can I edit the draft before saving?</h3>
-          <p>Yes. Every draft is editable, and every AI draft is marked DRAFT until you review it.</p>
-        </div>
-        <div class="faq-item">
-          <h3>What does the AI draft do with my notes?</h3>
-          <p>AI drafting connects soon — the free templates work now. When it connects, text sent for AI drafting is not stored by PawScribe.</p>
-        </div>
+        <details class="faq-item">
+          <summary>Where are my notes stored?</summary>
+          <p class="faq-answer">Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need an account to use the free templates?</summary>
+          <p class="faq-answer">No. The templates and the note builder work with no account and no install.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I edit the draft before saving?</summary>
+          <p class="faq-answer">Yes. Every draft is editable, and every AI draft is marked DRAFT until you review it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does the AI draft do with my notes?</summary>
+          <p class="faq-answer">AI drafting connects soon — the free templates work now. When it connects, text sent for AI drafting is not stored by PawScribe.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does PawScribe diagnose or prescribe?</summary>
+          <p class="faq-answer">No. PawScribe drafts notes; it does not diagnose or treat. Always review before saving.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I cancel anytime?</summary>
+          <p class="faq-answer">Yes. Pro and Clinic are monthly PayPal subscriptions with no contract. Cancel anytime; the workspace unlock is stored locally in your browser.</p>
+        </details>
       </div>
     </div>
   </section>
 </main>
 
-<a class="floating-contact" href="mailto:hello@pawscribe.site" aria-label="Contact PawScribe by email"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
-
 <footer class="site-footer">
-  <div class="container">
-    <p><a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32"> PawScribe</a></p>
-    <p>
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
-    </p>
-    <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
-    <p>© <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
-<div class="toast" hidden></div>
 
-<script>
-/* Landing-page live formatter: pure JavaScript, no AI, no network.
-   Lines that look like measurements go to Objective; the rest go to
-   Subjective. Assessment and Plan are left as [not stated] for the vet
-   to complete — findings are never invented. */
-document.addEventListener("DOMContentLoaded", function () {
-  function formatRoughNotes(text) {
-    var lines = text.split(/\n+/).map(function (l) { return l.trim(); }).filter(Boolean);
-    var objectiveRe = /\b(temp|temperature|hr|heart rate|rr|resp|weight|kg|lb|bpm|mmhg|crt|spo2|°|c\b)/i;
-    var s = [], o = [];
-    lines.forEach(function (line) {
-      if (objectiveRe.test(line)) o.push(line); else s.push(line);
-    });
-    return {
-      S: s.length ? s.join(" ") : "[not stated]",
-      O: o.length ? o.join(" ") : "[not stated]",
-      A: "[not stated] — review the notes above and write your assessment.",
-      P: "[not stated] — write the plan before saving."
-    };
-  }
-  function renderPreview() {
-    var grid = document.getElementById("template-preview");
-    if (!grid || !window.PAWSCRIBE_TEMPLATES) return;
-    window.PAWSCRIBE_TEMPLATES.slice(0, 3).forEach(function (t) {
-      var card = document.createElement("article");
-      card.className = "template-card";
-      var title = document.createElement("h3");
-      title.textContent = t.title;
-      var badge = document.createElement("p");
-      var pill = document.createElement("span");
-      pill.className = "pill";
-      pill.textContent = t.species;
-      badge.appendChild(pill);
-      var desc = document.createElement("p");
-      desc.textContent = t.description;
-      var link = document.createElement("a");
-      link.className = "btn btn-ghost";
-      link.href = "templates.html";
-      link.textContent = "See template";
-      card.appendChild(title);
-      card.appendChild(badge);
-      card.appendChild(desc);
-      card.appendChild(link);
-      grid.appendChild(card);
-    });
-  }
-  function wireDemo() {
-    var btn = document.getElementById("demo-format");
-    var input = document.getElementById("demo-input");
-    if (!btn || !input) return;
-    btn.addEventListener("click", function () {
-      var soap = formatRoughNotes(input.value);
-      document.getElementById("demo-s").textContent = soap.S;
-      document.getElementById("demo-o").textContent = soap.O;
-      document.getElementById("demo-a").textContent = soap.A;
-      document.getElementById("demo-p").textContent = soap.P;
-      document.getElementById("demo-output").hidden = false;
-      var empty = document.getElementById("demo-empty");
-      if (empty) empty.hidden = true;
-    });
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { renderPreview(); wireDemo(); });
-  } else { renderPreview(); wireDemo(); }
-});
-</script>
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
 </body>
 </html>

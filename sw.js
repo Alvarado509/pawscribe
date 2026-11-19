@@ -1,6 +1,6 @@
 /* PawScribe service worker — cache-first for same-origin static assets,
    network-first for HTML with an offline fallback to cached index.html. */
-const CACHE_NAME = "pawscribe-v1";
+const CACHE_NAME = "pawscribe-v2";
 const CORE_ASSETS = [
   "/pawscribe/",
   "/pawscribe/index.html",
@@ -14,6 +14,26 @@ const CORE_ASSETS = [
   "/pawscribe/assets/favicon-16x16.png",
   "/pawscribe/assets/favicon-32x32.png",
   "/pawscribe/assets/apple-touch-icon.png"
+  "/pawscribe/assets/icons.svg",
+  "/pawscribe/assets/marketing.css",
+  "/pawscribe/assets/demo.js",
+  "/pawscribe/assets/workspace.js",
+  "/pawscribe/assets/templates.js",
+  "/pawscribe/assets/paypal.js",
+  "/pawscribe/assets/ai.js",
+  "/pawscribe/assets/audio.js",
+  "/pawscribe/templates.html",
+  "/pawscribe/app.html",
+  "/pawscribe/dashboard.html",
+  "/pawscribe/auth.html",
+  "/pawscribe/pricing.html",
+  "/pawscribe/about.html",
+  "/pawscribe/privacy.html",
+  "/pawscribe/terms.html",
+  "/pawscribe/contact.html",
+  "/pawscribe/how-to-write-a-soap-note.html",
+  "/pawscribe/veterinary-soap-note-template.html",
+  "/pawscribe/how-to-save-time-on-vet-notes.html",
 ];
 
 self.addEventListener("install", (event) => {

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sign in or create an account — PawScribe</title>
+<meta name="description" content="Create a PawScribe account or sign in. Your account is saved in this browser only.">
+<link rel="canonical" href="https://alvarado509.github.io/pawscribe/auth.html">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root {
+  --color-bg: #F9F4F1;
+  --color-ink: #28030F;
+  --color-body: #5B3E47;
+  --color-muted: #7A5563;
+  --color-border: #D4C4C9;
+  --color-teal: #0F766E;
+  --color-teal-dark: #0B5E57;
+  --color-teal-soft: #CCFBF1;
+}
+html[data-theme="dark"] {
+  --color-bg: #211217;
+  --color-ink: #FBF9FA;
+  --color-body: #E9E2E3;
+  --color-muted: #C39DA8;
+  --color-border: #4C2934;
+}
+body { background: var(--color-bg); color: var(--color-body); font-size: 17px; line-height: 1.6; }
+h1, h2, h3 { color: var(--color-ink); }
+.section { padding: 64px 0; }
+@media (min-width: 768px) { .section { padding: 84px 0; } }
+.btn { font-size: 15px; }
+.auth-wrap { max-width: 560px; margin: 0 auto; }
+.auth-card { background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 24px; padding: 24px; }
+html[data-theme="dark"] .auth-card { background: #2E151D; }
+.form-error { color: #B91C1C; font-weight: 600; margin: 8px 0 0; }
+.form-error[hidden] { display: none; }
+.auth-note { font-size: 15px; color: var(--color-muted); }
+.field { margin-bottom: 16px; }
+.field .form-label { display: block; }
+@media (max-width: 767px) { .auth-card .btn { width: 100%; } }
+</style>
+<script src="assets/config.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html" aria-current="page">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+    <section class="section">
+      <div class="auth-wrap">
+        <h1>Your account</h1>
+        <p class="section-sub">Create an account or sign in to see your dashboard and your saved notes.</p>
+        <p class="auth-note"><svg class="icon" aria-hidden="true" style="width:20px;height:20px;vertical-align:-4px;"><use href="assets/icons.svg#lock"/></svg> Your account is saved in this browser only.</p>
+
+        <div class="tabs" role="tablist" aria-label="Account panels">
+          <button class="tab tab-active" type="button" data-tab="signup" role="tab">Create account</button>
+          <button class="tab" type="button" data-tab="signin" role="tab">Sign in</button>
+        </div>
+
+        <div class="auth-card" data-panel="signup" aria-label="Create account">
+          <h2>Create account</h2>
+          <form id="signup-form" novalidate>
+            <div class="field">
+              <label class="form-label" for="signup-name">Name</label>
+              <input class="form-input" type="text" id="signup-name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label class="form-label" for="signup-email">Email</label>
+              <input class="form-input" type="email" id="signup-email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label class="form-label" for="signup-password">Password</label>
+              <input class="form-input" type="password" id="signup-password" autocomplete="new-password" required>
+            </div>
+            <p class="form-error" id="signup-error" role="alert" hidden></p>
+            <button class="btn btn-primary" type="submit">Create account</button>
+          </form>
+          <p class="auth-note" style="margin-top: 16px;">Your account is saved in this browser only.</p>
+        </div>
+
+        <div class="auth-card" data-panel="signin" aria-label="Sign in" hidden>
+          <h2>Sign in</h2>
+          <form id="signin-form" novalidate>
+            <div class="field">
+              <label class="form-label" for="signin-email">Email</label>
+              <input class="form-input" type="email" id="signin-email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label class="form-label" for="signin-password">Password</label>
+              <input class="form-input" type="password" id="signin-password" autocomplete="current-password" required>
+            </div>
+            <p class="form-error" id="signin-error" role="alert" hidden></p>
+            <button class="btn btn-primary" type="submit">Sign in</button>
+          </form>
+          <p class="auth-note" style="margin-top: 16px;">Your account is saved in this browser only.</p>
+        </div>
+
+        <p style="margin-top: 24px;"><a href="app.html">Continue without an account — write a note</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="toast" hidden></div>
+
+<script>
+/* Auth logic: signup + sign-in on one page. Passwords are hashed with
+   SHA-256 via crypto.subtle and only the hash is stored, in localStorage
+   under pawscribe_user_v1: {name, email, passHash}. The session flag
+   pawscribe_session_v1 holds the signed-in email. Sign-out clears it.
+   After signup or sign-in the user goes to dashboard.html. */
+document.addEventListener("DOMContentLoaded", function () {
+  var USER_KEY = "pawscribe_user_v1";
+  var SESSION_KEY = "pawscribe_session_v1";
+
+  /* Tabs */
+  var tabs = document.querySelectorAll(".tab");
+  var panels = document.querySelectorAll("[data-panel]");
+  function showPanel(name) {
+    tabs.forEach(function (t) { t.classList.toggle("tab-active", t.getAttribute("data-tab") === name); });
+    panels.forEach(function (p) { p.hidden = p.getAttribute("data-panel") !== name; });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () { showPanel(t.getAttribute("data-tab")); });
+  });
+
+  function showError(id, msg) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.hidden = !msg;
+  }
+
+  async function sha256Hex(text) {
+    if (!window.crypto || !window.crypto.subtle) {
+      throw new Error("Secure hashing is not available in this browser.");
+    }
+    var data = new TextEncoder().encode(text);
+    var digest = await window.crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(digest)).map(function (b) {
+      return b.toString(16).padStart(2, "0");
+    }).join("");
+  }
+
+  function loadUser() {
+    try {
+      var raw = localStorage.getItem(USER_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function saveUser(user) {
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+  function startSession(email) {
+    localStorage.setItem(SESSION_KEY, email);
+    window.location.replace("dashboard.html");
+  }
+
+  document.getElementById("signup-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    showError("signup-error", "");
+    var name = document.getElementById("signup-name").value.trim();
+    var email = document.getElementById("signup-email").value.trim().toLowerCase();
+    var password = document.getElementById("signup-password").value;
+    if (!name || !email || !password) {
+      showError("signup-error", "Fill in your name, email and password.");
+      return;
+    }
+    if (password.length < 8) {
+      showError("signup-error", "Choose a password of at least 8 characters.");
+      return;
+    }
+    var existing = loadUser();
+    if (existing && existing.email === email) {
+      showError("signup-error", "An account with this email already exists in this browser — sign in instead.");
+      showPanel("signin");
+      return;
+    }
+    var passHash;
+    try {
+      passHash = await sha256Hex(password);
+    } catch (err) {
+      showError("signup-error", "Secure hashing is not available in this browser — try a modern browser.");
+      return;
+    }
+    saveUser({ name: name, email: email, passHash: passHash });
+    startSession(email);
+  });
+
+  document.getElementById("signin-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    showError("signin-error", "");
+    var email = document.getElementById("signin-email").value.trim().toLowerCase();
+    var password = document.getElementById("signin-password").value;
+    if (!email || !password) {
+      showError("signin-error", "Enter your email and password.");
+      return;
+    }
+    var user = loadUser();
+    if (!user || user.email !== email) {
+      showError("signin-error", "No account with this email in this browser — create an account first.");
+      return;
+    }
+    var passHash;
+    try {
+      passHash = await sha256Hex(password);
+    } catch (err) {
+      showError("signin-error", "Secure hashing is not available in this browser — try a modern browser.");
+      return;
+    }
+    if (passHash !== user.passHash) {
+      showError("signin-error", "Wrong password — try again.");
+      return;
+    }
+    startSession(email);
+  });
+});
+</script>
+</body>
+</html>

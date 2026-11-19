@@ -1,6 +1,8 @@
 /* PawScribe audio — assets/audio.js.
-   MediaRecorder capture (blob kept in memory only, never uploaded) and
-   Web Speech API dictation. No audio ever leaves the browser in v1. */
+   MediaRecorder capture (blob kept in memory only, never uploaded unless
+   the drafting Worker is connected) and Web Speech API dictation.
+   If recording or dictation is unsupported, the caller gets an honest
+   message — nothing is faked. */
 (function () {
   "use strict";
 
@@ -16,10 +18,15 @@
     return m + ":" + String(s % 60).padStart(2, "0");
   }
 
+  function recordingSupported() {
+    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia &&
+      typeof window.MediaRecorder !== "undefined");
+  }
+
   function startRecording(handlers) {
     handlers = handlers || {};
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      if (handlers.onError) handlers.onError("Microphone recording is not supported in this browser.");
+    if (!recordingSupported()) {
+      if (handlers.onError) handlers.onError("Recording is not supported in this browser — paste your notes instead.");
       return;
     }
     if (recorder && recorder.state === "recording") return;
@@ -54,9 +61,23 @@
     return !!(recorder && recorder.state === "recording");
   }
 
+  /* Hand a recorded blob to ai.js for transcription. With no Worker
+     connected this resolves {status:"not_connected"} and nothing leaves
+     the browser. */
+  function transcribeBlob(blob) {
+    if (window.PawScribeAI && window.PawScribeAI.transcribeAudio) {
+      return window.PawScribeAI.transcribeAudio(blob);
+    }
+    return Promise.resolve({ ok: false, status: "not_connected" });
+  }
+
   /* ---------- dictation (Web Speech API) ---------- */
   var recognition = null;
   var dictating = false;
+
+  function dictationSupported() {
+    return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+  }
 
   function startDictation(handlers) {
     handlers = handlers || {};
@@ -107,8 +128,11 @@
     startRecording: startRecording,
     stopRecording: stopRecording,
     isRecording: isRecording,
+    recordingSupported: recordingSupported,
+    transcribeBlob: transcribeBlob,
     startDictation: startDictation,
     stopDictation: stopDictation,
-    isDictating: isDictating
+    isDictating: isDictating,
+    dictationSupported: dictationSupported
   };
 })();

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pricing — PawScribe | Free, Pro $49, Clinic $119</title>
-<meta name="description" content="PawScribe pricing: Free $0 with 5 AI notes a month, Pro $49 per vet per month with 400 AI notes, Clinic $119 a month for 5 vets. No contract. Cancel anytime from your PayPal account.">
+<meta name="description" content="PawScribe pricing: Free $0 with 5 AI notes a month, Pro $49 per vet per month with 400 AI notes, Clinic $119 a month for 5 vets. No contract. Cancel anytime.">
 <link rel="canonical" href="https://alvarado509.github.io/pawscribe/pricing.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Pricing — PawScribe">
@@ -16,69 +16,153 @@
 <meta name="twitter:description" content="Free $0, Pro $49/vet/month, Clinic $119/month. AI SOAP drafts for veterinarians. No contract, cancel anytime.">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
-<script defer src="assets/config.js"></script>
-<script defer src="assets/app.js"></script>
-<script defer src="assets/paypal.js"></script>
+<style>
+:root {
+  --color-bg: #F9F4F1;
+  --color-ink: #28030F;
+  --color-body: #5B3E47;
+  --color-muted: #7A5563;
+  --color-border: #D4C4C9;
+  --color-teal: #0F766E;
+  --color-teal-dark: #0B5E57;
+  --color-teal-soft: #CCFBF1;
+  --color-amber-bg: #FFFBEB;
+  --color-amber-text: #92400E;
+}
+html[data-theme="dark"] {
+  --color-bg: #211217;
+  --color-ink: #FBF9FA;
+  --color-body: #E9E2E3;
+  --color-muted: #C39DA8;
+  --color-border: #4C2934;
+}
+body { background: var(--color-bg); color: var(--color-body); font-size: 17px; line-height: 1.6; }
+h1, h2, h3 { color: var(--color-ink); }
+.hero-title { font-family: Georgia, "Times New Roman", serif; font-weight: 700; }
+.hero-title em { font-style: italic; }
+h2.section-title { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 32px; line-height: 40px; }
+.section { padding: 64px 0; }
+@media (min-width: 768px) { .section { padding: 84px 0; } }
+.btn { font-size: 15px; }
+.price-card { padding: 32px; }
+.price-card .btn { width: 100%; }
+.price-amount { font-size: 48px; font-weight: 800; line-height: 1.1; }
+.price-amount small { font-size: 16px; font-weight: 500; color: var(--color-muted); }
+.price-featured { border: 2px solid var(--color-teal); box-shadow: 0 8px 30px rgba(40, 3, 15, 0.12); }
+.savings-badge { display: inline-block; background: var(--color-amber-bg); color: var(--color-amber-text); border: 1px solid #F59E0B; border-radius: 8px; padding: 8px 16px; font-size: 15px; font-weight: 600; margin: 8px 0 16px; }
+.value-line { text-align: center; font-size: 19px; font-weight: 600; color: var(--color-ink); max-width: 640px; margin: 0 auto; }
+.check-list li { list-style: none; }
+.check-list { list-style: none; padding: 0; margin: 8px 0 16px; }
+.check-list li { padding: 4px 0 4px 32px; position: relative; }
+.check-list li .icon { position: absolute; left: 0; top: 6px; color: var(--color-teal); }
+.check-list li .icon-check { color: #15803D; }
+.icon { width: 20px; height: 20px; flex-shrink: 0; vertical-align: -4px; }
+.compare-table td, .compare-table th { text-align: center; }
+.compare-table td:first-child, .compare-table th:first-child { text-align: left; }
+.compare-table .icon { color: #15803D; }
+.compare-table .dash { color: var(--color-muted); }
+/* Checkout modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(40, 3, 15, 0.6); z-index: 300; }
+.modal-overlay[hidden], .modal-dialog[hidden] { display: none; }
+.modal-dialog { position: fixed; z-index: 301; left: 16px; right: 16px; top: 50%; transform: translateY(-50%); max-width: 480px; margin: 0 auto; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 24px; padding: 24px; }
+html[data-theme="dark"] .modal-dialog { background: #2E151D; }
+.modal-dialog h2 { font-size: 24px; margin-bottom: 8px; }
+.modal-close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border: 1px solid var(--color-border); border-radius: 8px; background: transparent; color: var(--color-ink); font-size: 20px; cursor: pointer; }
+.modal-note { font-size: 15px; color: var(--color-muted); text-align: center; margin: 8px 0 0; }
+.modal-success { text-align: center; }
+.modal-success p { margin: 0 0 16px; }
+</style>
+<script src="assets/config.js" defer></script>
+<script src="assets/app.js" defer></script>
+<script src="assets/paypal.js" defer></script>
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="36" height="36"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html" aria-current="page">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html" aria-current="page">Pricing</a>
     </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html" aria-current="page">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
-  <section class="hero">
+  <section class="hero page-hero">
     <div class="container">
-      <h1 class="hero-title">Simple pricing for vets and clinics</h1>
+      <h1 class="hero-title">Simple pricing that <em>pays</em> for itself</h1>
       <p class="hero-sub">Start free. Upgrade when the notes pile up. Every plan works right in your browser — nothing to install.</p>
-      <div class="trust-strip">
-        <span class="pill pill-ready">Free templates, no account</span>
-        <span class="pill">Cancel anytime</span>
-        <span class="pill">Secure checkout with PayPal</span>
-      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="grid">
+      <div class="grid grid-3">
 
         <article class="price-card">
           <h3>Free</h3>
           <p class="price-amount">$0 <small>forever</small></p>
           <p>For trying PawScribe on real notes.</p>
           <ul class="check-list">
-            <li>SOAP templates for common visits</li>
-            <li>Note builder</li>
-            <li>5 AI notes per month</li>
-            <li>Notes saved in your browser only</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> SOAP templates</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Note builder</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> 5 AI notes / month</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Notes saved in your browser only</li>
           </ul>
-          <a class="btn btn-primary" href="app.html">Start free — no card</a>
+          <a class="btn btn-primary" href="auth.html">Start free</a>
         </article>
 
         <article class="price-card price-featured">
-          <span class="pill">Most popular</span>
+          <span class="pill pill-solid">Most Popular</span>
           <h3>Pro</h3>
           <p class="price-amount">$49 <small>per vet / month</small></p>
           <p>For one veterinarian who writes notes every day.</p>
+          <p class="savings-badge">Save up to $360/yr vs Scribenote Pro ($79/mo)</p>
           <ul class="check-list">
-            <li>400 AI notes per month</li>
-            <li>Custom templates</li>
-            <li>Note history</li>
-            <li>Discharge instructions</li>
-            <li>Everything in Free</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Everything in Free</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> 400 AI notes / month</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Custom templates</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Full note history</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Discharge instructions</li>
           </ul>
-          <div id="paypal-button-pro"></div>
-          <p>Your plan is saved in this browser only. Cancel anytime from your PayPal account — no contract.</p>
+          <button class="btn btn-primary" type="button" data-checkout-plan="pro">Start Pro</button>
         </article>
 
         <article class="price-card">
@@ -86,15 +170,43 @@
           <p class="price-amount">$119 <small>per month</small></p>
           <p>For a small practice that shares the work.</p>
           <ul class="check-list">
-            <li>5 vets included</li>
-            <li>2,000 AI notes per month</li>
-            <li>Shared templates for the whole clinic</li>
-            <li>Everything in Pro</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Everything in Pro</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> 5 vets included</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> 2,000 AI notes / month</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Shared templates</li>
+            <li><svg class="icon icon-check" aria-hidden="true"><use href="assets/icons.svg#check"/></svg> Priority support</li>
           </ul>
-          <div id="paypal-button-clinic"></div>
-          <p>Your plan is saved in this browser only. Cancel anytime from your PayPal account — no contract.</p>
+          <button class="btn btn-primary" type="button" data-checkout-plan="clinic">Start Clinic</button>
         </article>
 
+      </div>
+
+      <p class="value-line" style="margin-top: 48px;">One hour saved is worth about $288 in visits. Pro costs $49.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Compare plans</h2>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <caption>Feature comparison by plan</caption>
+          <thead>
+            <tr><th scope="col">Feature</th><th scope="col">Free</th><th scope="col">Pro</th><th scope="col">Clinic</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SOAP templates</td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+            <tr><td>Note builder</td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+            <tr><td>AI notes / month</td><td>5</td><td>400</td><td>2,000</td></tr>
+            <tr><td>Notes saved in your browser only</td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+            <tr><td>Custom templates</td><td><span class="dash" aria-label="Not included">—</span></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+            <tr><td>Full note history</td><td><span class="dash" aria-label="Not included">—</span></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+            <tr><td>Discharge instructions</td><td><span class="dash" aria-label="Not included">—</span></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+            <tr><td>Vets included</td><td>1</td><td>1</td><td>5</td></tr>
+            <tr><td>Shared templates</td><td><span class="dash" aria-label="Not included">—</span></td><td><span class="dash" aria-label="Not included">—</span></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+            <tr><td>Priority support</td><td><span class="dash" aria-label="Not included">—</span></td><td><span class="dash" aria-label="Not included">—</span></td><td><svg class="icon" aria-label="Included"><use href="assets/icons.svg#check"/></svg></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -103,6 +215,14 @@
     <div class="container">
       <h2 class="section-title">Pricing questions</h2>
       <div class="faq">
+        <details class="faq-item">
+          <summary>Where are my notes stored?</summary>
+          <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does the AI draft do with my notes?</summary>
+          <p>AI drafting connects soon — the free templates work now. When it connects, your rough notes are sent to the drafting service to build an editable SOAP draft, and the text is not stored by PawScribe.</p>
+        </details>
         <details class="faq-item">
           <summary>What happens after I subscribe?</summary>
           <p>PayPal confirms your subscription and your plan is saved in this browser, so the workspace unlocks your Pro or Clinic note limit right away. Your subscription itself lives in your PayPal account — PawScribe never sees your card details.</p>
@@ -125,23 +245,82 @@
   </section>
 </main>
 
+<!-- Checkout modal (PayPal subscription buttons render here) -->
+<div class="modal-overlay" id="paypal-modal-overlay" hidden></div>
+<div class="modal-dialog" id="paypal-modal" role="dialog" aria-modal="true" aria-labelledby="paypal-modal-title" hidden>
+  <button class="modal-close" type="button" data-paypal-close aria-label="Close">×</button>
+  <h2 id="paypal-modal-title">Subscribe to Pro</h2>
+
+  <div data-paypal-plan-panel="pro" hidden>
+    <p>Pro — $49 per vet / month. 400 AI notes a month, custom templates, full note history, discharge instructions.</p>
+    <div id="paypal-button-pro"></div>
+    <p class="modal-note">Cancel anytime</p>
+    <div class="modal-success" id="paypal-success-pro" hidden>
+      <p data-success-text></p>
+      <a class="btn btn-primary" href="dashboard.html">Go to your dashboard</a>
+    </div>
+  </div>
+
+  <div data-paypal-plan-panel="clinic" hidden>
+    <p>Clinic — $119 / month. 5 vets included, 2,000 AI notes a month, shared templates, priority support.</p>
+    <div id="paypal-button-clinic"></div>
+    <p class="modal-note">Cancel anytime</p>
+    <div class="modal-success" id="paypal-success-clinic" hidden>
+      <p data-success-text></p>
+      <a class="btn btn-primary" href="dashboard.html">Go to your dashboard</a>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Footer">
-      <a href="index.html">Home</a>
-      <a href="templates.html">Templates</a>
-      <a href="app.html">Workspace</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html" aria-current="page">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="toast" hidden></div>
 </body>
 </html>

@@ -3,114 +3,152 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — PawScribe | An AI scribe for veterinarians</title>
-<meta name="description" content="PawScribe is an AI scribe for veterinarians. Paste rough notes, dictate, or record a consultation and get an editable SOAP draft in seconds — built for independent US vet clinics.">
+<title>About PawScribe | AI scribe for veterinarians</title>
+<meta name="description" content="PawScribe is a browser-based AI scribe for independent veterinarians: free SOAP templates, editable AI drafts, notes saved only in your browser.">
 <link rel="canonical" href="https://alvarado509.github.io/pawscribe/about.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="About — PawScribe">
-<meta property="og:description" content="An AI scribe for veterinarians: rough notes in, editable SOAP draft out in seconds. Built for independent US vet clinics.">
+<meta property="og:title" content="About PawScribe">
+<meta property="og:description" content="A browser-based AI scribe for independent veterinarians — free templates, editable drafts, notes saved only in your browser.">
 <meta property="og:url" content="https://alvarado509.github.io/pawscribe/about.html">
 <meta property="og:image" content="https://alvarado509.github.io/pawscribe/assets/pawscribe-logo.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About — PawScribe">
-<meta name="twitter:description" content="An AI scribe for veterinarians: rough notes in, editable SOAP draft out in seconds. Built for independent US vet clinics.">
+<meta name="twitter:title" content="About PawScribe">
+<meta name="twitter:description" content="A browser-based AI scribe for independent veterinarians.">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
-<script defer src="assets/config.js"></script>
+<link rel="stylesheet" href="assets/marketing.css">
 <script defer src="assets/app.js"></script>
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="36" height="36"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
-  <section class="hero">
+  <section class="hero page-hero">
     <div class="container">
-      <h1 class="hero-title">About PawScribe</h1>
-      <p class="hero-sub">An AI scribe for veterinarians. Less time typing notes, more time with patients.</p>
+      <p><span class="eyebrow">About</span></p>
+      <h1 class="hero-title">Notes, <em>finished</em> in the exam room.</h1>
+      <p class="hero-sub">PawScribe is a scribe for veterinarians — not a practice system, not a diagnostic tool.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2 class="section-title">What PawScribe is</h2>
-      <p>PawScribe turns messy exam notes into clean, structured SOAP notes. The vet pastes rough notes, dictates, or records a consultation, and gets an editable SOAP draft — Subjective, Objective, Assessment, Plan — in seconds. The vet always reviews and edits the draft before it goes into the record.</p>
-      <p>It works entirely in the browser. There is nothing to install, no account to create, and the free templates and note builder are free to use as they are.</p>
+    <div class="container prose">
+      <h2>What PawScribe is</h2>
+      <p>PawScribe turns rough notes, dictation, or a recorded consultation into an editable SOAP draft. The vet reviews the draft, edits it, and decides what goes into the medical record. It works in a browser on any device — phone, tablet, or exam-room computer — with nothing to install.</p>
+      <p>The free tier is the whole point of the product: SOAP templates and a note builder that work with no account. The paid plans add AI drafting, custom templates, full history, and discharge instructions.</p>
 
-      <h2 class="section-title">Who it is for</h2>
-      <p>PawScribe is built for independent veterinary clinics in the United States. There are 130,415 veterinarians in the US, and 93.9% of vet practices are independently owned. Most of them are small teams without an IT department — so the tool has to work the moment you open it, with no setup and no training.</p>
+      <h2>Who it is for</h2>
+      <p>Independent veterinarians in the US. There are 130,415 veterinarians in the US, and 93.9% of vet practices are independently owned — mostly small teams where the vet does the notes alone, after hours. PawScribe is built for that vet: one person, one browser tab, one finished note per patient.</p>
 
-      <h2 class="section-title">The problem</h2>
-      <p>Documentation eats the veterinary day. Vets spend 2–3 hours per day on documentation, and one SOAP note takes 10–15 minutes by hand. That is time taken from patients, from the team, and from going home on time. PawScribe exists to shrink that part of the day: the draft is ready in seconds, and the vet spends their time checking it, not typing it from scratch.</p>
+      <h2>Why the problem matters</h2>
+      <p>Vets spend 2–3 hours per day on documentation, and one SOAP note takes 10–15 minutes to write by hand. Average vet income is $163,014 a year, and one vet-hour earns about $288 in revenue. The typing is the bottleneck — not the thinking.</p>
 
-      <h2 class="section-title">How it works</h2>
-      <div class="steps">
-        <div class="step">
-          <span class="step-num">1</span>
-          <h3>Give it your rough notes</h3>
-          <p>Paste what you jotted down, dictate it, or record the consultation.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">2</span>
-          <h3>Get an editable SOAP draft</h3>
-          <p>PawScribe organises your input into Subjective, Objective, Assessment, and Plan in seconds.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">3</span>
-          <h3>Review, edit, and use it</h3>
-          <p>You check every line, fix what is wrong, and copy the finished note into your record. The vet stays in charge of the record.</p>
-        </div>
-      </div>
+      <h2>How it works, honestly</h2>
+      <p>PawScribe is a static website. Your notes and templates are saved only in your browser (localStorage). There is no PawScribe server and no account database.</p>
+      <p>AI drafting connects through a small proxy (a Cloudflare Worker) when it is switched on. Until then, the free templates and the note builder work now, and AI drafting is labelled as coming soon. When AI drafting connects, text sent for drafting is not stored by PawScribe.</p>
+      <p>PawScribe drafts notes; it does not diagnose or treat. Always review before saving.</p>
 
-      <h2 class="section-title">How PawScribe compares</h2>
-      <p>AI scribes for vets are a new category, and the standard price is around $99 per vet per month. PawScribe Pro is $49 per vet per month — half the category standard — with a free plan that includes templates, the note builder, and 5 AI notes a month. There is no install and no account: the free tools work the moment you open the page.</p>
-      <p>The category itself is real and growing: Scribenote raised an $8.2M seed round led by Andreessen Horowitz (a16z), VetRec went through Y Combinator (S23), and Abridge — the same idea for human doctors — is valued at $5.3B. PawScribe is the independent, browser-first option in that category.</p>
+      <h2>The category is proven</h2>
+      <p>The AI scribe idea is proven in veterinary medicine and beyond. Scribenote, a veterinary scribe, raised $8.2M led by Andreessen Horowitz (a16z). Abridge — the same idea for human doctors — is valued at $5.3B. PawScribe brings that idea to the independent vet at $49 a month, with no install and no setup.</p>
 
-      <h2 class="section-title">What PawScribe does not do</h2>
-      <ul class="check-list">
-        <li>No diagnosis — PawScribe drafts notes, it does not tell you what is wrong with a patient.</li>
-        <li>No treatment advice — it does not recommend treatments or medications.</li>
-        <li>No drug-dosage calculator — all dosages are the vet's responsibility.</li>
-        <li>No PIMS integration in v1 — notes are copied from PawScribe into your practice system by hand.</li>
-      </ul>
-      <p>AI drafts always need review. PawScribe is a drafting tool, not a clinician.</p>
-
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="app.html">Try the free workspace</a>
-        <a class="btn btn-ghost" href="pricing.html">See pricing</a>
-      </div>
+      <p style="margin-top:32px"><a class="btn btn-primary" href="app.html">Try the free workspace</a> <a class="btn btn-secondary" href="pricing.html">See pricing</a></p>
     </div>
   </section>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Footer">
-      <a href="index.html">Home</a>
-      <a href="templates.html">Templates</a>
-      <a href="app.html">Workspace</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
 </body>
 </html>

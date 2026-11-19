@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="What belongs in each SOAP section, a worked dog wellness example, and the mistakes to avoid.">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
-<script defer src="assets/config.js"></script>
+<link rel="stylesheet" href="assets/marketing.css">
 <script defer src="assets/app.js"></script>
 <script type="application/ld+json">
 {
@@ -61,41 +61,75 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="36" height="36"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
   <article>
-    <section class="hero">
+    <section class="article-hero">
       <div class="container">
-        <h1 class="hero-title">How to Write a SOAP Note</h1>
+        <p><span class="eyebrow">Guide</span></p>
+        <h1 class="hero-title">How to Write a <em>SOAP</em> Note</h1>
         <p class="hero-sub">A practical guide for veterinarians: what goes in each section, a worked example, and the mistakes that make notes hard to use.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
+      <div class="container prose">
         <p>Documentation is a cornerstone of veterinary practice. It keeps care continuous, keeps the team on the same page, and protects you legally. There are 130,415 veterinarians in the US, and 93.9% of vet practices are independently owned — most of them small teams where one clear note has to do the work of a whole handover.</p>
         <p>It is also where the day goes. Vets spend 2–3 hours per day on documentation, and a single SOAP note takes 10–15 minutes to write by hand. A good note is not just thorough — it is structured so the next person can read it in seconds.</p>
 
-        <h2 class="section-title">What is a SOAP note?</h2>
-        <p>SOAP stands for Subjective, Objective, Assessment, and Plan. It is a structured method for documenting a patient visit, in a fixed order, so anyone on the veterinary team can quickly understand the patient's status, your thinking, and what happens next.</p>
+        <h2>What is a SOAP note?</h2>
+        <p>SOAP stands for Subjective, Objective, Assessment, and Plan. It is a structured method for documenting a patient visit, in a fixed order, so anyone on the veterinary team can quickly understand the patient&rsquo;s status, your thinking, and what happens next.</p>
         <p>A well-written SOAP note gives you clear communication across the team, continuity of care across visits and across vets, a legal record of what you found and decided, and a clear basis for accurate billing.</p>
 
-        <h2 class="section-title">S: Subjective — what the owner tells you</h2>
-        <p>The Subjective section captures information from the client's perspective: what they observed and how they describe the problem.</p>
+        <h2>S: Subjective — what the owner tells you</h2>
+        <p>The Subjective section captures information from the client&rsquo;s perspective: what they observed and how they describe the problem.</p>
         <ul>
-          <li><strong>Chief complaint:</strong> the main reason for the visit, ideally in the owner's own words — for example, "limping since yesterday."</li>
+          <li><strong>Chief complaint:</strong> the main reason for the visit, ideally in the owner&rsquo;s own words — for example, &ldquo;limping since yesterday.&rdquo;</li>
           <li><strong>History of present illness:</strong> onset, duration, frequency, severity, what makes it better or worse, and any treatment already tried.</li>
           <li><strong>Review of systems:</strong> a brief check of other body systems — appetite, thirst, urination, defecation, coughing, sneezing, vomiting, diarrhoea, energy, behaviour.</li>
           <li><strong>Environment and routine:</strong> diet, exercise, housing, travel, contact with other animals, recent changes.</li>
@@ -104,20 +138,20 @@
         </ul>
         <p><strong>What does not belong here:</strong> your own exam findings, test results, interpretations, or treatment recommendations. If you observed it, it goes in Objective. If you concluded it, it goes in Assessment.</p>
 
-        <h2 class="section-title">O: Objective — what you find</h2>
+        <h2>O: Objective — what you find</h2>
         <p>The Objective section holds factual, measurable, observable data collected by the veterinary team — verifiable and free of interpretation.</p>
         <ul>
           <li><strong>Physical exam findings:</strong> nose-to-tail, system by system. General appearance, mentation, body condition score (BCS), hydration, vital signs — temperature, pulse, respiration, mucous membrane colour, capillary refill time — and each system: eyes, ears, mouth, heart, lungs, abdomen, urogenital, musculoskeletal, neurological, skin, lymph nodes.</li>
           <li><strong>Diagnostic results from this visit:</strong> in-house lab results, imaging findings, cytology, or external lab results received during the appointment.</li>
           <li><strong>Measurements:</strong> weight and anything else you measured.</li>
-          <li><strong>Behavioural observations:</strong> what staff observed — for example, "tense during abdominal palpation" or "bright, alert, and responsive."</li>
+          <li><strong>Behavioural observations:</strong> what staff observed — for example, &ldquo;tense during abdominal palpation&rdquo; or &ldquo;bright, alert, and responsive.&rdquo;</li>
         </ul>
         <p><strong>What does not belong here:</strong> owner-reported history (Subjective), your interpretation or problem list (Assessment), or treatment plans (Plan).</p>
 
-        <h2 class="section-title">A: Assessment — what you think it is</h2>
-        <p>The Assessment is your professional interpretation of the Subjective and Objective findings. It answers "what is wrong?"</p>
+        <h2>A: Assessment — what you think it is</h2>
+        <p>The Assessment is your professional interpretation of the Subjective and Objective findings. It answers &ldquo;what is wrong?&rdquo;</p>
         <ul>
-          <li><strong>Problem list:</strong> a concise, prioritised list of active problems. For a healthy patient, that can simply be "healthy adult canine."</li>
+          <li><strong>Problem list:</strong> a concise, prioritised list of active problems. For a healthy patient, that can simply be &ldquo;healthy adult canine.&rdquo;</li>
           <li><strong>Differential diagnoses:</strong> the possible causes you are considering for each problem, in order of likelihood.</li>
           <li><strong>Working diagnosis:</strong> your most likely diagnosis from the evidence so far.</li>
           <li><strong>Prognosis:</strong> a brief expected outcome for each problem.</li>
@@ -125,8 +159,8 @@
         </ul>
         <p><strong>What does not belong here:</strong> new history or exam findings, detailed diagnostic plans, or vague statements with no clinical justification.</p>
 
-        <h2 class="section-title">P: Plan — what you are going to do</h2>
-        <p>The Plan is your strategy for managing the patient's problems. It answers "what are we going to do about it?"</p>
+        <h2>P: Plan — what you are going to do</h2>
+        <p>The Plan is your strategy for managing the patient&rsquo;s problems. It answers &ldquo;what are we going to do about it?&rdquo;</p>
         <ul>
           <li><strong>Diagnostic plan:</strong> further tests needed to confirm or rule out your differentials.</li>
           <li><strong>Therapeutic plan:</strong> treatments, medications, and procedures — with dose, route, frequency, and duration for every medication.</li>
@@ -137,7 +171,7 @@
         </ul>
         <p><strong>What does not belong here:</strong> repetition of information already stated in S, O, or A, or anything unrelated to this visit.</p>
 
-        <h2 class="section-title">Worked example: routine dog wellness exam</h2>
+        <h2>Worked example: routine dog wellness exam</h2>
         <p>This is an example note, not a real patient. Names are placeholders.</p>
         <div class="soap">
           <div class="soap-section">
@@ -147,7 +181,7 @@
           </div>
           <div class="soap-section">
             <p class="soap-label">O — Objective</p>
-            <p><strong>Weight:</strong> 32.5 kg, unchanged from last year. <strong>BCS:</strong> 5/9. <strong>Temperature:</strong> 101.5°F. <strong>Pulse:</strong> 90 bpm, strong and regular. <strong>Respiration:</strong> 24/min. Mucous membranes pink, capillary refill time under 2 seconds. Bright, alert, and responsive, good body condition, clean coat.</p>
+            <p><strong>Weight:</strong> 32.5 kg, unchanged from last year. <strong>BCS:</strong> 5/9. <strong>Temperature:</strong> 101.5&deg;F. <strong>Pulse:</strong> 90 bpm, strong and regular. <strong>Respiration:</strong> 24/min. Mucous membranes pink, capillary refill time under 2 seconds. Bright, alert, and responsive, good body condition, clean coat.</p>
             <p><strong>Head, eyes, ears, nose, throat:</strong> eyes clear, no discharge; ears clean, no odour or pain; mouth shows mild gingivitis and moderate dental tartar, mainly on molars and canines; lymph nodes normal. <strong>Heart:</strong> normal sounds, no murmur. <strong>Lungs:</strong> clear, no cough on tracheal palpation. <strong>Abdomen:</strong> soft, non-painful, no organ enlargement. <strong>Musculoskeletal:</strong> normal gait, no lameness, no joint pain. <strong>Skin:</strong> healthy coat, no lesions or parasites. <strong>Neurological:</strong> normal reflexes, proprioception, and gait.</p>
             <p><strong>Diagnostics today:</strong> faecal flotation negative; heartworm antigen test negative.</p>
           </div>
@@ -161,68 +195,99 @@
           </div>
         </div>
 
-        <h2 class="section-title">Common mistakes to avoid</h2>
+        <h2>Common mistakes to avoid</h2>
         <ul>
           <li><strong>Mixing sections.</strong> The most frequent error. Owner reports go in S, exam findings in O, your interpretation in A, future actions in P.</li>
-          <li><strong>Vague language.</strong> "Dog had an upset stomach" tells the next vet nothing. Write "owner reports one episode of vomiting and soft stool yesterday evening." Quantify where you can — lameness grade, BCS, temperature.</li>
-          <li><strong>Skipping pertinent negatives.</strong> "No coughing," "no heart murmur detected," and "no lameness" are findings too. Document what you did not find.</li>
+          <li><strong>Vague language.</strong> &ldquo;Dog had an upset stomach&rdquo; tells the next vet nothing. Write &ldquo;owner reports one episode of vomiting and soft stool yesterday evening.&rdquo; Quantify where you can — lameness grade, BCS, temperature.</li>
+          <li><strong>Skipping pertinent negatives.</strong> &ldquo;No coughing,&rdquo; &ldquo;no heart murmur detected,&rdquo; and &ldquo;no lameness&rdquo; are findings too. Document what you did not find.</li>
           <li><strong>An Assessment that does not follow from S and O.</strong> If you diagnose ear disease, the S and O sections should show the scratching and the inflamed ear canal that led you there.</li>
-          <li><strong>An incomplete Plan.</strong> "Meds given" is not a plan. Dose, route, frequency, duration, client instructions, and a recheck date are.</li>
-          <li><strong>No problem list.</strong> Even a healthy patient deserves one line: "healthy adult canine, no active problems."</li>
-          <li><strong>Skipping sections on "normal" visits.</strong> Every section still applies — the Assessment is just short.</li>
+          <li><strong>An incomplete Plan.</strong> &ldquo;Meds given&rdquo; is not a plan. Dose, route, frequency, duration, client instructions, and a recheck date are.</li>
+          <li><strong>No problem list.</strong> Even a healthy patient deserves one line: &ldquo;healthy adult canine, no active problems.&rdquo;</li>
+          <li><strong>Skipping sections on &ldquo;normal&rdquo; visits.</strong> Every section still applies — the Assessment is just short.</li>
           <li><strong>No date or signature.</strong> Every note needs both.</li>
         </ul>
 
-        <h2 class="section-title">How PawScribe speeds it up</h2>
+        <h2>How PawScribe speeds it up</h2>
         <p>With vets spending 2–3 hours a day on documentation and one SOAP note taking 10–15 minutes by hand, the typing is the bottleneck — not the thinking. An AI scribe takes your rough notes, your dictation, or a recording of the consultation and turns it into an editable SOAP draft in seconds, already sorted into S, O, A, and P.</p>
-        <p>The vet's job does not change: always review and edit the draft before it goes into the record. The AI has no clinical judgement, and the vet is ultimately responsible for the accuracy of the medical record. What changes is where the time goes — from typing a note from scratch to checking a draft.</p>
+        <p>The vet&rsquo;s job does not change: always review and edit the draft before it goes into the record. The AI has no clinical judgement, and the vet is ultimately responsible for the accuracy of the medical record. What changes is where the time goes — from typing a note from scratch to checking a draft.</p>
 
-        <h2 class="section-title">Frequently asked questions</h2>
+        <h2>Frequently asked questions</h2>
         <div class="faq">
           <details class="faq-item">
             <summary>What does SOAP stand for?</summary>
-            <p>Subjective, Objective, Assessment, and Plan. It is a structured way to document a patient visit: what the owner reports, what you find on exam and testing, your interpretation, and what you plan to do.</p>
+            <p class="faq-answer">Subjective, Objective, Assessment, and Plan. It is a structured way to document a patient visit: what the owner reports, what you find on exam and testing, your interpretation, and what you plan to do.</p>
           </details>
           <details class="faq-item">
             <summary>What goes in the Assessment section of a SOAP note?</summary>
-            <p>Your professional interpretation of the Subjective and Objective findings: a prioritised problem list, differential diagnoses, your working diagnosis, and a brief prognosis. No new history or exam findings belong here.</p>
+            <p class="faq-answer">Your professional interpretation of the Subjective and Objective findings: a prioritised problem list, differential diagnoses, your working diagnosis, and a brief prognosis. No new history or exam findings belong here.</p>
           </details>
           <details class="faq-item">
             <summary>Do I have to write all four sections for a routine wellness exam?</summary>
-            <p>Yes. Even for a healthy patient, address every section. The Assessment can simply state that the patient is a healthy adult, and the Plan covers vaccines, parasite prevention, and the next visit.</p>
+            <p class="faq-answer">Yes. Even for a healthy patient, address every section. The Assessment can simply state that the patient is a healthy adult, and the Plan covers vaccines, parasite prevention, and the next visit.</p>
           </details>
           <details class="faq-item">
             <summary>How long does a SOAP note take to write?</summary>
-            <p>One SOAP note takes 10–15 minutes by hand, and vets spend 2–3 hours per day on documentation. An AI scribe can turn rough notes, dictation, or a recorded consultation into an editable SOAP draft in seconds, which the vet then reviews and edits.</p>
+            <p class="faq-answer">One SOAP note takes 10–15 minutes by hand, and vets spend 2–3 hours per day on documentation. An AI scribe can turn rough notes, dictation, or a recorded consultation into an editable SOAP draft in seconds, which the vet then reviews and edits.</p>
           </details>
         </div>
 
-        <div class="hero-cta">
+        <p class="hero-cta" style="margin-top:32px">
           <a class="btn btn-primary" href="templates.html">Get the SOAP template</a>
-          <a class="btn btn-ghost" href="app.html">Try the free workspace</a>
-        </div>
+          <a class="btn btn-secondary" href="app.html">Try the free workspace</a>
+        </p>
       </div>
     </section>
   </article>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Footer">
-      <a href="index.html">Home</a>
-      <a href="templates.html">Templates</a>
-      <a href="app.html">Workspace</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html" aria-current="page">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
 </body>
 </html>

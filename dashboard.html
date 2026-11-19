@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dashboard — PawScribe</title>
+<meta name="description" content="Your PawScribe dashboard: your plan, AI notes used this month, and your recent notes.">
+<link rel="canonical" href="https://alvarado509.github.io/pawscribe/dashboard.html">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+:root {
+  --color-bg: #F9F4F1;
+  --color-ink: #28030F;
+  --color-body: #5B3E47;
+  --color-muted: #7A5563;
+  --color-border: #D4C4C9;
+  --color-teal: #0F766E;
+  --color-teal-dark: #0B5E57;
+  --color-teal-soft: #CCFBF1;
+}
+html[data-theme="dark"] {
+  --color-bg: #211217;
+  --color-ink: #FBF9FA;
+  --color-body: #E9E2E3;
+  --color-muted: #C39DA8;
+  --color-border: #4C2934;
+}
+body { background: var(--color-bg); color: var(--color-body); font-size: 17px; line-height: 1.6; }
+h1, h2, h3 { color: var(--color-ink); }
+.section { padding: 64px 0; }
+@media (min-width: 768px) { .section { padding: 84px 0; } }
+.btn { font-size: 15px; }
+@media (max-width: 767px) { .card .btn, .actions-row .btn { width: 100%; } }
+.icon { width: 20px; height: 20px; flex-shrink: 0; vertical-align: -4px; }
+.progress { height: 8px; background: var(--color-border); border-radius: 999px; overflow: hidden; margin: 16px 0 8px; }
+.progress-fill { height: 100%; background: var(--color-teal); border-radius: 999px; width: 0; }
+.plan-name { font-size: 19px; font-weight: 700; color: var(--color-ink); text-transform: capitalize; }
+.quota-line { font-size: 15px; color: var(--color-muted); margin: 0; }
+.actions-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.dash-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 768px) { .dash-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+.kv { margin: 0 0 8px; }
+.kv strong { color: var(--color-ink); }
+</style>
+<script src="assets/config.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html" aria-current="page">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+    <section class="section">
+      <h1 id="greeting">Welcome back</h1>
+      <p class="section-sub">Your plan, your notes, and your next draft — all in one place.</p>
+
+      <div class="dash-grid">
+        <article class="card" aria-label="Your plan">
+          <h2>Your plan</h2>
+          <p class="plan-name" id="plan-name">Free</p>
+          <div class="progress" role="progressbar" aria-label="AI notes used this month" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" id="quota-bar">
+            <div class="progress-fill" id="quota-fill"></div>
+          </div>
+          <p class="quota-line" id="quota-line">AI notes used this month: 0 / 5</p>
+          <p style="margin-top: 24px;"><a class="btn btn-primary" href="pricing.html">Upgrade</a></p>
+        </article>
+
+        <article class="card" aria-label="Quick actions">
+          <h2>Quick actions</h2>
+          <div class="actions-row">
+            <a class="btn btn-primary" href="app.html">Write a note <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-right"/></svg></a>
+            <a class="btn btn-ghost" href="templates.html">Browse templates</a>
+            <a class="btn btn-ghost" href="pricing.html">Upgrade</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="dash-grid" style="margin-top: 16px;">
+        <article class="card" aria-label="Recent notes">
+          <h2>Recent notes</h2>
+          <div class="note-history" id="recent-notes"></div>
+          <p class="empty-state" id="recent-empty">No saved notes yet.</p>
+          <p style="margin-top: 16px;"><a class="btn btn-ghost" href="app.html">Write your first note</a></p>
+        </article>
+
+        <article class="card" aria-label="Account">
+          <h2>Account</h2>
+          <p class="kv"><strong>Name:</strong> <span id="account-name">—</span></p>
+          <p class="kv"><strong>Email:</strong> <span id="account-email">—</span></p>
+          <p class="kv"><strong>Plan:</strong> <span id="account-plan">Free</span></p>
+          <p class="kv">Your account is saved in this browser only.</p>
+          <p style="margin-top: 24px;"><button class="btn btn-ghost" type="button" id="signout-btn">Sign out</button></p>
+        </article>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="toast" hidden></div>
+
+<script>
+/* Dashboard logic: greeting, plan card with quota progress, recent notes
+   from localStorage, account section, sign-out. Redirects to auth.html
+   when no session flag is set. */
+document.addEventListener("DOMContentLoaded", function () {
+  var USER_KEY = "pawscribe_user_v1";
+  var SESSION_KEY = "pawscribe_session_v1";
+  var NOTES_KEY = "pawscribe_notes_v1";
+
+  var sessionEmail = null;
+  var user = null;
+  try {
+    sessionEmail = localStorage.getItem(SESSION_KEY);
+    user = JSON.parse(localStorage.getItem(USER_KEY) || "null");
+  } catch (e) { /* storage unavailable */ }
+  if (!sessionEmail || !user || user.email !== sessionEmail) {
+    window.location.replace("auth.html");
+    return;
+  }
+
+  var firstName = (user.name || "").trim().split(/\s+/)[0] || "there";
+  document.getElementById("greeting").textContent = "Welcome back, " + firstName;
+
+  var plan = window.PawScribe ? window.PawScribe.getPlan() : "free";
+  var planLabel = plan === "clinic" ? "Clinic" : plan === "pro" ? "Pro" : "Free";
+  document.getElementById("plan-name").textContent = planLabel;
+  document.getElementById("account-plan").textContent = planLabel;
+  document.getElementById("account-name").textContent = user.name || "—";
+  document.getElementById("account-email").textContent = user.email || "—";
+
+  var q = window.PawScribe ? window.PawScribe.getQuota() : { used: 0 };
+  var limit = window.PawScribe ? window.PawScribe.quotaLimit() : 5;
+  document.getElementById("quota-line").textContent = "AI notes used this month: " + q.used + " / " + limit;
+  var pct = limit > 0 ? Math.min(100, Math.round((q.used / limit) * 100)) : 0;
+  document.getElementById("quota-fill").style.width = pct + "%";
+  var bar = document.getElementById("quota-bar");
+  bar.setAttribute("aria-valuemax", String(limit));
+  bar.setAttribute("aria-valuenow", String(q.used));
+
+  var notes = [];
+  try {
+    var raw = localStorage.getItem(NOTES_KEY);
+    notes = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(notes)) notes = [];
+  } catch (e) { notes = []; }
+  var list = document.getElementById("recent-notes");
+  document.getElementById("recent-empty").hidden = notes.length > 0;
+  notes.slice().reverse().slice(0, 5).forEach(function (note) {
+    var item = document.createElement("div");
+    item.className = "history-item";
+    var title = document.createElement("p");
+    var date = note.savedAt ? new Date(note.savedAt).toLocaleString() : "Undated";
+    title.textContent = date + " — " + ((note.soap && note.soap.S) || "").slice(0, 80);
+    var link = document.createElement("a");
+    link.className = "btn btn-ghost";
+    link.href = "app.html";
+    link.textContent = "Open in workspace";
+    item.appendChild(title);
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+
+  document.getElementById("signout-btn").addEventListener("click", function () {
+    try { localStorage.removeItem(SESSION_KEY); } catch (e) { /* storage unavailable */ }
+    window.location.replace("auth.html");
+  });
+});
+</script>
+</body>
+</html>

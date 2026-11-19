@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="Vets spend 2-3 hours a day on documentation. Practical tactics to cut charting time without cutting corners.">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
-<script defer src="assets/config.js"></script>
+<link rel="stylesheet" href="assets/marketing.css">
 <script defer src="assets/app.js"></script>
 <script type="application/ld+json">
 {
@@ -61,116 +61,169 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="container">
-    <a class="logo" href="index.html"><img class="logo-img" src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="36" height="36"> PawScribe</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">&#9776;</button>
-    <button class="btn btn-ghost" type="button" data-theme-toggle>Dark mode</button>
-    <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="templates.html">Templates</a>
-      <a class="nav-link" href="app.html">Workspace</a>
-      <a class="nav-link" href="pricing.html">Pricing</a>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+      PawScribe
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="app.html">Write a note</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="icon" data-icon-moon aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+        <svg class="icon" data-icon-sun aria-hidden="true" hidden><use href="assets/icons.svg#sun"/></svg>
+      </button>
+      <span data-auth-logged-out>
+        <a class="signin-link" href="auth.html">Sign in</a>
+      </span>
+      <span class="user-chip" data-auth-logged-in hidden>
+        <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#user"/></svg>
+        <span data-user-first-name></span>
+        <a href="dashboard.html">Dashboard</a>
+      </span>
+      <a class="btn btn-primary header-cta" href="app.html">Try free</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon" data-icon-menu aria-hidden="true"><use href="assets/icons.svg#menu"/></svg>
+        <svg class="icon" data-icon-close aria-hidden="true" hidden><use href="assets/icons.svg#x"/></svg>
+      </button>
+    </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="templates.html">Templates</a>
+    <a href="app.html">Write a note</a>
+    <a href="pricing.html">Pricing</a>
+    <span data-auth-logged-out>
+      <a href="auth.html">Sign in</a>
+    </span>
+    <span data-auth-logged-in hidden>
+      <a href="dashboard.html">Dashboard</a>
+    </span>
+    <a class="btn btn-primary" href="app.html">Try free</a>
+  </nav>
 </header>
 
 <main>
   <article>
-    <section class="hero">
+    <section class="article-hero">
       <div class="container">
-        <h1 class="hero-title">How to Save Time on Vet Notes</h1>
+        <p><span class="eyebrow">Guide</span></p>
+        <h1 class="hero-title">How to Save Time on <em>Vet</em> Notes</h1>
         <p class="hero-sub">Practical tactics you can use today — no new system, no extra staff, and no corners cut.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="grid">
-          <div class="stat">
-            <p class="stat-number">2–3 h</p>
-            <p class="stat-label">per day spent on documentation</p>
-          </div>
-          <div class="stat">
-            <p class="stat-number">10–15 min</p>
-            <p class="stat-label">to write one SOAP note by hand</p>
-          </div>
-          <div class="stat">
-            <p class="stat-number">130,415</p>
-            <p class="stat-label">veterinarians in the US</p>
-          </div>
-          <div class="stat">
-            <p class="stat-number">93.9%</p>
-            <p class="stat-label">of vet practices independently owned</p>
-          </div>
+      <div class="container prose">
+        <div class="grid grid-4">
+          <div class="stat"><span class="stat-number">2–3 h</span><span class="stat-label">per day spent on documentation</span></div>
+          <div class="stat"><span class="stat-number">10–15 min</span><span class="stat-label">to write one SOAP note by hand</span></div>
+          <div class="stat"><span class="stat-number">130,415</span><span class="stat-label">veterinarians in the US</span></div>
+          <div class="stat"><span class="stat-number">93.9%</span><span class="stat-label">of vet practices independently owned</span></div>
         </div>
 
-        <p>Every day, veterinarians face the same problem: documentation. Vets spend 2–3 hours per day on it, and a single SOAP note takes 10–15 minutes to write by hand. There are 130,415 veterinarians in the US, and 93.9% of vet practices are independently owned — small teams where every minute of the vet's day counts twice.</p>
+        <p>Every day, veterinarians face the same problem: documentation. Vets spend 2–3 hours per day on it, and a single SOAP note takes 10–15 minutes to write by hand. There are 130,415 veterinarians in the US, and 93.9% of vet practices are independently owned — small teams where every minute of the vet&rsquo;s day counts twice.</p>
         <p>The good news: you do not need a new system to get some of that time back. These tactics work today, with the tools you already have.</p>
 
-        <h2 class="section-title">1. Use templates for every common visit</h2>
+        <h2>1. Use templates for every common visit</h2>
         <p>Build one template per visit type — wellness exam, sick visit, recheck, post-surgery check — with the four SOAP sections and short prompts under each one. Instead of starting from a blank page, you fill in the blanks and delete what does not apply. Notes come out consistent, nothing gets forgotten, and the mental effort drops because the structure is already decided. See the <a href="veterinary-soap-note-template.html">veterinary SOAP note template</a> for a copy-ready starting point, or use the free templates in the <a href="templates.html">PawScribe template library</a>.</p>
 
-        <h2 class="section-title">2. Dictate instead of typing</h2>
-        <p>Your voice is faster than your fingers. Dictate your notes during the visit or immediately after, while the details are fresh — into your phone, a dictation app, or your computer's built-in dictation. Speaking the findings as you go can speed up the first draft of a note, and it captures the small details you would forget by the end of the day.</p>
+        <h2>2. Dictate instead of typing</h2>
+        <p>Your voice is faster than your fingers. Dictate your notes during the visit or immediately after, while the details are fresh — into your phone, a dictation app, or your computer&rsquo;s built-in dictation. Speaking the findings as you go can speed up the first draft of a note, and it captures the small details you would forget by the end of the day.</p>
 
-        <h2 class="section-title">3. Write notes during the visit</h2>
-        <p>It feels like multitasking, but jotting key observations down during the exam saves real time later. A few bullet points — the owner's main concern, the abnormal findings, your first impression — give you a solid base to build the note from, instead of reconstructing several cases from memory hours later. It also lets you clarify things with the owner on the spot, while they are still in the room.</p>
+        <h2>3. Write notes during the visit</h2>
+        <p>It feels like multitasking, but jotting key observations down during the exam saves real time later. A few bullet points — the owner&rsquo;s main concern, the abnormal findings, your first impression — give you a solid base to build the note from, instead of reconstructing several cases from memory hours later. It also lets you clarify things with the owner on the spot, while they are still in the room.</p>
 
-        <h2 class="section-title">4. Use short standard phrases</h2>
-        <p>Agree on a set of standard abbreviations and short phrases for findings you write every day, and use them the same way across the whole practice. "Bright, alert, and responsive" becomes "BAR." "Within normal limits" becomes "WNL." A shared shorthand is quick to write and quick for the next person to read — as long as everyone in the practice means the same thing by it.</p>
+        <h2>4. Use short standard phrases</h2>
+        <p>Agree on a set of standard abbreviations and short phrases for findings you write every day, and use them the same way across the whole practice. &ldquo;Bright, alert, and responsive&rdquo; becomes &ldquo;BAR.&rdquo; &ldquo;Within normal limits&rdquo; becomes &ldquo;WNL.&rdquo; A shared shorthand is quick to write and quick for the next person to read — as long as everyone in the practice means the same thing by it.</p>
 
-        <h2 class="section-title">5. Let an AI scribe write the first draft</h2>
-        <p>An AI scribe turns your rough notes, a dictated summary, or a recorded consultation into an editable SOAP draft in seconds, already sorted into Subjective, Objective, Assessment, and Plan. You start from a structured draft instead of a blank page. PawScribe's free plan includes 5 AI notes a month, and the templates and note builder are free with no account.</p>
+        <h2>5. Let an AI scribe write the first draft</h2>
+        <p>An AI scribe turns your rough notes, a dictated summary, or a recorded consultation into an editable SOAP draft in seconds, already sorted into Subjective, Objective, Assessment, and Plan. You start from a structured draft instead of a blank page. PawScribe&rsquo;s free plan includes 5 AI notes a month, and the templates and note builder are free with no account.</p>
 
-        <h2 class="section-title">An honest note on AI</h2>
+        <h2>An honest note on AI</h2>
         <p>An AI scribe saves typing time — it does not replace your judgement. AI drafts always need your review before they go into the medical record. An AI scribe does not diagnose, does not give treatment advice, and does not calculate drug dosages. Your professional judgement, your medical expertise, and your review of every line are what make the record trustworthy. The tool changes where the time goes; the responsibility stays with you.</p>
 
-        <h2 class="section-title">Frequently asked questions</h2>
+        <h2>Frequently asked questions</h2>
         <div class="faq">
           <details class="faq-item">
             <summary>How much time do vets spend on documentation?</summary>
-            <p>Vets spend 2–3 hours per day on documentation, and one SOAP note takes 10–15 minutes by hand. There are 130,415 veterinarians in the US, and 93.9% of vet practices are independently owned, so most of that time falls on small teams.</p>
+            <p class="faq-answer">Vets spend 2–3 hours per day on documentation, and one SOAP note takes 10–15 minutes by hand. There are 130,415 veterinarians in the US, and 93.9% of vet practices are independently owned, so most of that time falls on small teams.</p>
           </details>
           <details class="faq-item">
             <summary>What is the fastest way to write vet notes?</summary>
-            <p>Use a template for each visit type, dictate instead of typing, jot key points down during the visit, and use short standard phrases. An AI scribe can turn rough notes, dictation, or a recorded consultation into an editable SOAP draft in seconds.</p>
+            <p class="faq-answer">Use a template for each visit type, dictate instead of typing, jot key points down during the visit, and use short standard phrases. An AI scribe can turn rough notes, dictation, or a recorded consultation into an editable SOAP draft in seconds.</p>
           </details>
           <details class="faq-item">
-            <summary>Do AI scribes replace the vet's judgement?</summary>
-            <p>No. AI drafts always need review by the vet before they go into the medical record. An AI scribe does not diagnose, does not give treatment advice, and does not calculate drug dosages. The vet's judgement stays in charge.</p>
+            <summary>Do AI scribes replace the vet&rsquo;s judgement?</summary>
+            <p class="faq-answer">No. AI drafts always need review by the vet before they go into the medical record. An AI scribe does not diagnose, does not give treatment advice, and does not calculate drug dosages. The vet&rsquo;s judgement stays in charge.</p>
           </details>
           <details class="faq-item">
             <summary>Should I write notes during the visit or after?</summary>
-            <p>Jotting key observations down during the visit saves time later: details are fresh, you can clarify things with the owner on the spot, and you are not trying to recall several cases hours later. Even brief bullet points are enough to build the note from.</p>
+            <p class="faq-answer">Jotting key observations down during the visit saves time later: details are fresh, you can clarify things with the owner on the spot, and you are not trying to recall several cases hours later. Even brief bullet points are enough to build the note from.</p>
           </details>
         </div>
 
-        <div class="hero-cta">
+        <p class="hero-cta" style="margin-top:32px">
           <a class="btn btn-primary" href="app.html">Try the free workspace</a>
-          <a class="btn btn-ghost" href="templates.html">Browse templates</a>
-        </div>
+          <a class="btn btn-secondary" href="templates.html">Browse templates</a>
+        </p>
       </div>
     </section>
   </article>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span data-year>2026</span> PawScribe</p>
-    <nav aria-label="Footer">
-      <a href="index.html">Home</a>
-      <a href="templates.html">Templates</a>
-      <a href="app.html">Workspace</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-    <nav aria-label="Guides">
-      <a href="how-to-write-a-soap-note.html">How to write a SOAP note</a>
-      <a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a>
-      <a href="how-to-save-time-on-vet-notes.html">How to save time on vet notes</a>
-    </nav>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/pawscribe-logo.jpg" alt="PawScribe logo" width="32" height="32">
+          PawScribe
+        </a>
+        <p class="footer-tagline">The AI scribe for veterinarians. SOAP notes in seconds, right in your browser.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="app.html">Write a note</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="how-to-write-a-soap-note.html">How to write a SOAP note</a></li>
+          <li><a href="veterinary-soap-note-template.html">Veterinary SOAP note template</a></li>
+          <li><a href="how-to-save-time-on-vet-notes.html" aria-current="page">How to save time on vet notes</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Saved only in your browser. Text sent for AI drafting is not stored by PawScribe.</p>
+      <p>&copy; 2026 PawScribe</p>
+    </div>
   </div>
 </footer>
+
+<a class="fab" id="contact-fab" href="contact.html" aria-label="Contact us">
+  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chat"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status"></div>
 </body>
 </html>
